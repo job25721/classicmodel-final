@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const Database = require('../config/database')
 
+
 module.exports = {
     login(req,res){
         
@@ -16,7 +17,7 @@ module.exports = {
                         req.session.username = username
                         res.redirect('/home')
                     }else{
-                        res.render('pages/login')
+                        res.redirect('/login')
                     }
                 }
             )
