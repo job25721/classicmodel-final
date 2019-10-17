@@ -5,11 +5,10 @@ const Database = require('../config/database')
 
 module.exports = {
     Index (req,res){
-       res.render('pages/index');
+       res.render('pages/index')
     },
     Login (req,res){
-        req.session.nonRe = true
-         res.render('pages/login')
+        res.render('pages/login')
     },
     Home(req,res){
         if(req.session.loggedin === true){
