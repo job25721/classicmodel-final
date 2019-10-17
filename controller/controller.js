@@ -5,23 +5,24 @@ const Database = require('../config/database')
 
 module.exports = {
     login(req,res){
+        req.session.loggedin = true
+        res.render('pages/home')
+        // var username = req.body.username
+        // var password = req.body.password
         
-        var username = req.body.username
-        var password = req.body.password
-        
-        if(username && password){
-            Database.query('SELECT * FROM users WHERE username = ? AND password = ?',[username,password],
-                function(err,result,fields){
-                    if(result.length >0 ){
-                        req.session.loggedin = true
-                        req.session.username = username
-                        res.redirect('/home')
-                    }else{
-                        res.redirect('/login')
-                    }
-                }
-            )
-        }
+        // if(username && password){
+        //     Database.query('SELECT * FROM users WHERE username = ? AND password = ?',[username,password],
+        //         function(err,result,fields){
+        //             if(result.length >0 ){
+        //                 req.session.loggedin = true
+        //                 req.session.username = username
+        //                 res.redirect('/home')
+        //             }else{
+        //                 res.redirect('/login')
+        //             }
+        //         }
+        //     )
+        // }
     },
     logout(req,res){
         req.session.loggedin = false

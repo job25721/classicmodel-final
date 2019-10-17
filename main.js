@@ -11,13 +11,13 @@ const Middleware =require('./middleware/loggerMiddleware')
 
 
 //connect to database
-Database.connect((err)=>{
-    if(err) {
-        throw err;
-    }else{
-        console.log("Connected to database!!");
-    }
-})
+// Database.connect((err)=>{
+//     if(err) {
+//         throw err;
+//     }else{
+//         console.log("Connected to database!!");
+//     }
+// })
 
 //session
 app.use(session({
