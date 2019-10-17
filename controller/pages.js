@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path')
+const Database = require('../config/database')
 
 
 module.exports = {
@@ -18,7 +19,34 @@ module.exports = {
         }
     },
     Catalog (req,res){
-       res.render('pages/catalog/catalog')
+
+        Database.query('SELECT `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`,`imgSrc` FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
+      
+            // response.end;
+            //var myJ = [{data : 'aawfawf'},{data : 'sfkiohek5o'}];
+             res.render('pages/catalog/catalog',{result : result })
+            //res.render('pages/catalog/catalog',{data : 'aawfawf'})
+           // res.json(result);
+            // res.send("Success");
+             
+         });
+       //res.render('pages/catalog/catalog')
+    },
+
+    scaleFilter (req,res){
+        Database.query('SELECT DISTINCT productScale FROM products',function(err,data,fields){
+            res.json(data);
+
+        });
+
+
+    },
+    vendorFilter (req,res) {
+        Database.query('SELECT DISTINCT productVendor FROM products',function(err,data,fields){
+            res.json(data);
+
+        });
+
     },
     Instock(req,res){
         if(req.session.loggedin === true){

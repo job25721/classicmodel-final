@@ -3,13 +3,15 @@ const app = express()
 const Database = require('../config/database')
 
 module.exports = {
+    
+    
     login(req,res){
         
         var username = req.body.username
         var password = req.body.password
         
         if(username && password){
-            Database.query('SELECT * FROM users WHERE username = ? AND password = ?',[username,password],
+            Database.query('SELECT * FROM employees WHERE email = ? AND employeeNumber = ?',[username,password],
                 function(err,result,fields){
                     if(result.length >0 ){
                         req.session.loggedin = true
