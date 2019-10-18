@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add User</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .main {
+            display: inline-block;
+            position: fixed;
+            text-align: left;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 35%;
+            max-width: 350px;
+            height: 400px;
+            margin: auto;
+            box-shadow: 0px 2px 5px #3131313f;
+            padding-left: 25px;
+            padding-right: 25px;
+            background: whitesmoke;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main">
+            <form action="/add" method="POST">
+                <p class="h4 text-center mb-4 mt-5">Add user</p>
+                <label for="defaultFormLoginEmailEx" class="grey-text">employeeNumber</label>
+                <input type="username" name="empNum" id="empNum" class="form-control" placeholder="Enter employeeNumber" / required>
+                <br />
+                <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
+                <input type="password" name="password" id="pswd" class="form-control" placeholder="Enter Password" / required> 
+                <div class="text-center mt-4">
+                        <button id="submit" class="btn btn-primary"> Add user </button>
+                </div>
+            </form>
+            <div id="line" class="collapse">
+                <hr> 
+            </div>
+            <div class="w-100 alert alert-success alert-dismissible collapse" id="myAlert" role="alert">
+                <strong>Success : </strong> User added
+                    <button type="button" class="close" id="btnSubmit" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <br><br><br>
+            <hr>
+            <form action="/select" method="POST">
+                <h1 class="dispaly-4">Check employee data</h1>
+                <input type="number" placeholder="empnum" name="num" >
+                <input type="text" placeholder="pass" name="pass">
+                <button class="btn btn-dark">Peek</button>
+            </form>
+            
+            <a href="/login" ><button class="btn btn-dark">Login</button></a>
+
+    </div>
+</body>
+    <script src="/jquery/jquery.min.js"></script>
+    <script>
+        
+    </script>
+</html>
