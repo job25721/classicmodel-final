@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path')
 const Database = require('../config/database')
 
 
@@ -20,14 +18,12 @@ module.exports = {
     Catalog (req,res){
 
         Database.query('SELECT `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`,`imgSrc` FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
-      
             // response.end;
             //var myJ = [{data : 'aawfawf'},{data : 'sfkiohek5o'}];
              res.render('pages/catalog/catalog',{result : result })
             //res.render('pages/catalog/catalog',{data : 'aawfawf'})
            // res.json(result);
-            // res.send("Success");
-             
+            // res.send("Success"); 
          });
        //res.render('pages/catalog/catalog')
     },
@@ -82,12 +78,9 @@ module.exports = {
             res.redirect('/authenFailed')
         }
     },
-    success (req,res){
-        if(req.session.loggedin === true){
-            res.render('pages/success')
-        }else{
-            res.redirect('/authenFailed')
-        }
+    addUser (req,res){
+        res.render('pages/addUser',{x:10})
+        
     },
     authenFailed (req,res){
         res.render('pages/redirectPage')

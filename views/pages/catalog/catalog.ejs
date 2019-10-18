@@ -17,60 +17,6 @@
    <link href="/css/simple-sidebar.css" rel="stylesheet">
 
    <link rel="stylesheet" href="/fontawesome/css/all.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
-
-   <script type="text/javascript">
-      $(document).ready(() => {
-         $.ajax({
-            url: 'scaleFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               var text;
-               text = "";
-
-               $.each(data, function (index, obj) {
-
-                  text += '<label class="container">'
-                  text += '<input type="checkbox" checked="checked">'
-                  text += '<span class="checkmark"></span>'
-                  text += obj.productScale
-                  text += '</label>'
-               });
-               $('#scalefilter').html(text);
-
-            },
-         });
-
-         $.ajax({
-            url: 'vendorFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               var text;
-               text = "";
-
-               $.each(data, function (index, obj) {
-
-                  text += '<label class="container">'
-                  text += '<input type="checkbox" checked="checked">'
-                  text += '<span class="checkmark"></span>'
-                  text += obj.productVendor
-                  text += '</label>'
-               });
-               $('#vendorfilter').html(text);
-
-            },
-         });
-
-      });
-
-      $(document).ajaxError(() => {
-         $('#demo').html('Error: unknown ajaxError!');
-      });
-   </script>
 
 </head>
 
@@ -204,10 +150,6 @@
                      </div>
 
                      <div class="row">
-                        <script>
-                           var row = < % -JSON.stringify(result) % >
-                              console.log(row);
-                        </script>
                         <% for(var i=0; i < result.length; i++) { %>
                         <div class="col-lg-4 col-md-6 mb-4" id='<%= result[i].productName %>'>
                            <div class="card h-100">
@@ -226,17 +168,10 @@
                                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                               </div>
                            </div>
-
                         </div>
                         <% } %>
-
-
-
-
-
                      </div>
                   </div>
-
                </div>
             </div>
          </div>
@@ -255,6 +190,59 @@
       $("#menu-toggle").click(function (e) {
          e.preventDefault();
          $("#wrapper").toggleClass("toggled");
+      });
+   </script>
+
+
+
+   <!-- filter srcipt -->
+   <script type="text/javascript">
+      $(document).ready(() => {
+         $.ajax({
+            url: 'scaleFilter',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+               var text;
+               text = "";
+
+               $.each(data, function (index, obj) {
+
+                  text += '<label class="container">'
+                  text += '<input type="checkbox" class="scaleFilter">'
+                  text += '<span class="checkmark"></span>'
+                  text += '  '
+                  text += obj.productScale
+                  text += '</label>'
+               });
+               $('#scalefilter').html(text);
+
+            },
+         });
+
+         $.ajax({
+            url: 'vendorFilter',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+               var text;
+               text = "";
+               $.each(data, function (index, obj) {
+                  text += '<label class="container">'
+                  text += '<input type="checkbox">'
+                  text += '<span class="checkmark"></span>'
+                  text += '  '
+                  text += obj.productVendor
+                  text += '</label>'
+               });
+               $('#vendorfilter').html(text);
+            },
+         });
+
+      });
+
+      $(document).ajaxError(() => {
+         $('#demo').html('Error: unknown ajaxError!');
       });
    </script>
 

@@ -14,6 +14,7 @@ module.exports = (app) => {
     app.get('/preordermanage', pagesCon.Preordermanage)
     app.get('/customer', pagesCon.Customer)
     app.get('/employee', pagesCon.Employee)
+    app.get('/addUser',pagesCon.addUser)
 
 
 
