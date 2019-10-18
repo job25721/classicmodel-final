@@ -35,8 +35,10 @@ app.set("view engine","ejs")
 
 
 //routes
+require('./routes/dataRoute')(app) //dataServe
 require('./routes/pages')(app) //pages routes
 require('./routes/logger')(app) //logger
+
 
 //serve static css bootstrap
 app.use(express.static('style'))

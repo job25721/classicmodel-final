@@ -21,72 +21,70 @@
 
 
 
-<script type="text/javascript">
+   <script type="text/javascript">
+      $(document).ready(() => {
+         $.ajax({
+            url: 'scaleFilter',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+               var text;
+               text = "";
 
-    
-    $(document).ready(() => {
-        $.ajax({
-          url: 'scaleFilter',
-          type: 'GET',
-          dataType : 'json',
-          success: (data) => {var text;
-                   text = "";
-                   
-            $.each(data, function(index, obj) {
-                  
-                    text+='<label class="container">'
-                     text+='<input type="checkbox" checked="checked">'
-                     text+='<span class="checkmark"></span>'
-                     text+=obj.productScale
-                        text+='</label>'
-                  });
-                   $('#scalefilter').html( text);
+               $.each(data, function (index, obj) {
 
-            },
-        });
-
-        $.ajax({
-          url: 'vendorFilter',
-          type: 'GET',
-          dataType : 'json',
-          success: (data) => {
-                   var text;
-                   text = "";
-                   
-            $.each(data, function(index, obj) {
-                  
-                    text+='<label class="container">'
-                     text+='<input type="checkbox" checked="checked">'
-                     text+='<span class="checkmark"></span>'
-                     text+=obj.productVendor
-                        text+='</label>'
-                  });
-                   $('#vendorfilter').html( text);
+                  text += '<label class="container">'
+                  text += '<input type="checkbox" checked="checked">'
+                  text += '<span class="checkmark"></span>'
+                  text += obj.productScale
+                  text += '</label>'
+               });
+               $('#scalefilter').html(text);
 
             },
-        });
-       
+         });
+
+         $.ajax({
+            url: 'vendorFilter',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+               var text;
+               text = "";
+
+               $.each(data, function (index, obj) {
+
+                  text += '<label class="container">'
+                  text += '<input type="checkbox" checked="checked">'
+                  text += '<span class="checkmark"></span>'
+                  text += obj.productVendor
+                  text += '</label>'
+               });
+               $('#vendorfilter').html(text);
+
+            },
+         });
+
       });
-    
+
       $(document).ajaxError(() => {
-        $('#demo').html('Error: unknown ajaxError!');
+         $('#demo').html('Error: unknown ajaxError!');
       });
- 
-    </script>
+   </script>
 
 </head>
 
 <body class="sfmono">
-   
+
 
    <div id="wrapper">
-      
+
 
       <div id="content-wrapper" class="d-flex flex-column">
 
 
          <div id="content">
-            
+
 
             <!-- Topbar -->
             <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4 shadow fixed-top">
@@ -160,7 +158,7 @@
                <div class="row">
 
                   <div class="col-lg-3 mt-3" style="padding-top: 21px;">
-                     
+
                      <div class="list-group mt-5">
                         <h5 class="</label>">Scale</h5>
                         <div class="list-group-item" id="scalefilter"></div>
@@ -175,7 +173,7 @@
 
                   <div class="col-lg-9">
                      <h2 class="my-4">Product Catalog</h2>
-                     
+
                      <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                         <ol class="carousel-indicators">
                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -206,35 +204,35 @@
                      </div>
 
                      <div class="row">
-                           <script>
-                                 var row =<%-JSON.stringify(result)%>
-                                 console.log(row);
-                             </script>
-                         <% for(var i=0; i < result.length; i++) { %>
-                           <div class="col-lg-4 col-md-6 mb-4" id='<%= result[i].productName %>'>
-                              <div class="card h-100">
+                        <script>
+                           var row = < % -JSON.stringify(result) % >
+                              console.log(row);
+                        </script>
+                        <% for(var i=0; i < result.length; i++) { %>
+                        <div class="col-lg-4 col-md-6 mb-4" id='<%= result[i].productName %>'>
+                           <div class="card h-100">
                               <a href="#"><img class="card-img-top" src="/img/<%=result[i].imgSrc%>" alt=""></a>
                               <div class="card-body">
-                                    <h4 class="card-title">
-                                       <a href="#"><%= result[i].productName %></a>
-                                    </h4>
-                                    <h5>Scale <%= result[i].productScale %></h5>
-                                    <h5>$<%= result[i].buyPrice %> </h5>
-                                    <h5>Seller: <%= result[i].productVendor %></h5>
-                                    <h5>ProductLine: <%= result[i].productLine %></h5>
-                                    <p class="card-text"><%= result[i].productDescription %></p>
-                                 </div>
-                                 <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                 </div>
+                                 <h4 class="card-title">
+                                    <a href="#"><%= result[i].productName %></a>
+                                 </h4>
+                                 <h5>Scale <%= result[i].productScale %></h5>
+                                 <h5>$<%= result[i].buyPrice %> </h5>
+                                 <h5>Seller: <%= result[i].productVendor %></h5>
+                                 <h5>ProductLine: <%= result[i].productLine %></h5>
+                                 <p class="card-text"><%= result[i].productDescription %></p>
                               </div>
-                           
+                              <div class="card-footer">
+                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                              </div>
                            </div>
-                            <% } %>  
-                           
-                           
-                           
-                        
+
+                        </div>
+                        <% } %>
+
+
+
+
 
                      </div>
                   </div>
@@ -258,8 +256,6 @@
          e.preventDefault();
          $("#wrapper").toggleClass("toggled");
       });
-
-
    </script>
 
 

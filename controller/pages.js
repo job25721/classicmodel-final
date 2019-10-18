@@ -32,21 +32,7 @@ module.exports = {
        //res.render('pages/catalog/catalog')
     },
 
-    scaleFilter (req,res){
-        Database.query('SELECT DISTINCT productScale FROM products',function(err,data,fields){
-            res.json(data);
-
-        });
-
-
-    },
-    vendorFilter (req,res) {
-        Database.query('SELECT DISTINCT productVendor FROM products',function(err,data,fields){
-            res.json(data);
-
-        });
-
-    },
+    
     Instock(req,res){
         if(req.session.loggedin === true){
             res.render('pages/ordering/instock')
