@@ -4,6 +4,8 @@ const Database = require('../config/database')
 
 
 module.exports = {
+    
+    
     login(req,res){
         req.session.loggedin = true
         res.render('pages/home')
