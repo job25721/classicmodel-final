@@ -12,6 +12,13 @@ module.exports = {
             res.json(data);
         });
     },
+    fetchDetails(req,res){
+        var empNum = parseInt(req.session.user) 
+        Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum,(err,data)=>{
+            
+            res.json(data)
+        })
+    },
     select (req,res){
         user = parseInt(req.body.num) 
         pass = req.body.pass

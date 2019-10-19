@@ -17,7 +17,7 @@ module.exports = {
             if (data.length > 0) {
                 Database.query('SELECT employeeNumber FROM users WHERE employeeNumber = ' + empNum, (err, data2) => {
                     if (data2.length > 0) {
-                        res.send("this emp alreay have account");
+                        res.send("this emp already have account");
                     } else {
                         bcrypt.hash(pswd, saltRounds, function (err, hash) {
                             Database.query('INSERT INTO users(employeeNumber,pswd) VALUES(' + empNum + ',' + '"' + hash + '"' + ')')
@@ -29,10 +29,6 @@ module.exports = {
             } else {
                 res.send("no such employee data");
             }
-
-
-
-
         });
     },
 
@@ -44,13 +40,14 @@ module.exports = {
                 bcrypt.compare(password.toString(), data[0].pswd, function (err, compared) {
                     if (compared) {
                         req.session.loggedin = true
+                        req.session.user = empNum
                         res.redirect('/home')
                     } else {
                         res.redirect('/login')
                     }
                 });
             }else{
-                redirect('/login')
+                res.redirect('/login')
             }
             
         });
