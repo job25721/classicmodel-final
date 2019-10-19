@@ -215,11 +215,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Product in stock</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Customer List</h1>
                     </div>
 
                     <!-- Content Row -->
-                    
+                    <div>
+                        <table id="TableID"></table>
+                    </div>
                 </div>  
             </div>
 
@@ -253,6 +255,43 @@
 
 
     </script>
+
+     <!-- filter srcipt -->
+   <script type="text/javascript">
+    $(document).ready(() => {
+       $.ajax({
+          url: 'getCustomer',
+          type: 'GET',
+          dataType: 'json',
+          success: (datatable) => {
+              //console.log(datatable)
+             var text;
+             text = "";
+             $.each(datatable, function (index, obj) {
+                text += '<tr>'
+                text += '<td class="container">'
+                text += obj.customerNumber
+                text += '  '
+                text += obj.customerName
+                text += '  '
+                text += obj.city
+                text += '  '
+                text += '</td>'
+                text += '</tr>'
+                text += '<br>'
+                text += '<br>'
+             });
+             $('#TableID').html(text);
+          },
+       });
+
+    });
+
+    $(document).ajaxError(() => {
+       $('#demo').html('Error: unknown ajaxError!');
+    });
+ </script>
+
 
 
 </body>

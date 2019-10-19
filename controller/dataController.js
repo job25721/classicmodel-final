@@ -36,5 +36,12 @@ module.exports = {
             
         })
         
+    },
+    TableID(req,res){
+        Database.query('SELECT DISTINCT customerNumber,customerName,city FROM customers',function(err,datatable,fields){
+            res.json(datatable);
+            console.log(datatable)
+        });
     }
+
 }
