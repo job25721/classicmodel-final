@@ -16,7 +16,6 @@ module.exports = {
         }
     },
     Catalog (req,res){
-<<<<<<< HEAD
         console.log(req.query.scale);
         console.log(req.query.vendor);
         var scale = req.query.scale;
@@ -24,10 +23,6 @@ module.exports = {
         if((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All") ){
         Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
       
-=======
-
-        Database.query('SELECT `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`,`imgSrc` FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
->>>>>>> master
             // response.end;
             //var myJ = [{data : 'aawfawf'},{data : 'sfkiohek5o'}];
              res.render('pages/catalog/catalog',{result : result })
