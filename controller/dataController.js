@@ -42,7 +42,13 @@ module.exports = {
         Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers', function (err, data, fields) {
             res.json(data);
            // console.log(datatableID)
-        });
+        }); 
+    },
+    instockData (req,res){
+        Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`',(err,data)=>{
+            res.json(data)
+        })
+
     }
 
 
