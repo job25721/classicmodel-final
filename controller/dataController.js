@@ -8,40 +8,42 @@ module.exports = {
         });
     },
     vendorFilter(req, res) {
-        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {            
+        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {
             res.json(data);
         });
     },
-    fetchDetails(req,res){
-        var empNum = parseInt(req.session.user) 
-        Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum,(err,data)=>{
-            
+    fetchDetails(req, res) {
+        var empNum = parseInt(req.session.user)
+        Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum, (err, data) => {
+
             res.json(data)
         })
     },
-    select (req,res){
-        user = parseInt(req.body.num) 
+    select(req, res) {
+        user = parseInt(req.body.num)
         pass = req.body.pass
         console.log(user);
-        
-        Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user,(err,data)=>{
+
+        Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user, (err, data) => {
             // console.log(err);
-            if(data.length > 0){
-                bcrypt.compare(pass.toString(), data[0].pswd, function(err, bool) {
+            if (data.length > 0) {
+                bcrypt.compare(pass.toString(), data[0].pswd, function (err, bool) {
                     res.send("Password Match : " + bool)
                 });
-            }else{
+            } else {
                 res.send("no such employee")
-            }           
-            
+            }
+
         })
-        
+
     },
-    TableID(req,res){
-        Database.query('SELECT DISTINCT customerNumber,customerName,city FROM customers',function(err,datatable,fields){
-            res.json(datatable);
-            console.log(datatable)
+   
+    Customer(req, res) {
+        Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers', function (err, data, fields) {
+            res.json(data);
+           // console.log(datatableID)
         });
     }
+
 
 }

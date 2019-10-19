@@ -179,8 +179,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle"
-                                    src="/img/profile.jpg">
+                                <img class="img-profile rounded-circle" src="/img/profile.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -219,10 +218,19 @@
                     </div>
 
                     <!-- Content Row -->
-                    <div>
-                        <table id="TableID"></table>
-                    </div>
-                </div>  
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>CustomerID</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerData"></tbody>
+                    </table>
+
+                </div>
             </div>
 
             <!-- Footer -->
@@ -252,45 +260,35 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-
-
     </script>
 
-     <!-- filter srcipt -->
-   <script type="text/javascript">
-    $(document).ready(() => {
-       $.ajax({
-          url: 'getCustomer',
-          type: 'GET',
-          dataType: 'json',
-          success: (datatable) => {
-              //console.log(datatable)
-             var text;
-             text = "";
-             $.each(datatable, function (index, obj) {
-                text += '<tr>'
-                text += '<td class="container">'
-                text += obj.customerNumber
-                text += '  '
-                text += obj.customerName
-                text += '  '
-                text += obj.city
-                text += '  '
-                text += '</td>'
-                text += '</tr>'
-                text += '<br>'
-                text += '<br>'
-             });
-             $('#TableID').html(text);
-          },
-       });
+    <!-- filter srcipt -->
+    <script type="text/javascript">
+        $(document).ready(() => {
 
-    });
+            $.ajax({
+                url :'customerFetch',
+                type : 'GET',
+                dataType : 'json',
+                success : function(data){
+                    var text ='';
+                       $.each(data, function(index,obj){
+                           text += '<tr>'
+                           text += '<td>' + obj.customerNumber+ '</td>'
+                           text += '<td>' + obj.customerName+ '</td>'
+                           text += '<td>' + obj.addressLine1+ '</td>'
+                           text += '</tr>'
+                       })
+                    $('#customerData').html(text)
+                }
+            })
+          
+        });
 
-    $(document).ajaxError(() => {
-       $('#demo').html('Error: unknown ajaxError!');
-    });
- </script>
+        $(document).ajaxError(() => {
+            $('#demo').html('Error: unknown ajaxError!');
+        });
+    </script>
 
 
 
