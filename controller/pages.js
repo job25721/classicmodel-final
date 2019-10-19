@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path')
 const Database = require('../config/database')
 
 
@@ -18,6 +16,7 @@ module.exports = {
         }
     },
     Catalog (req,res){
+<<<<<<< HEAD
         console.log(req.query.scale);
         console.log(req.query.vendor);
         var scale = req.query.scale;
@@ -25,13 +24,16 @@ module.exports = {
         if((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All") ){
         Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
       
+=======
+
+        Database.query('SELECT `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`,`imgSrc` FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
+>>>>>>> master
             // response.end;
             //var myJ = [{data : 'aawfawf'},{data : 'sfkiohek5o'}];
              res.render('pages/catalog/catalog',{result : result })
             //res.render('pages/catalog/catalog',{data : 'aawfawf'})
            // res.json(result);
-            // res.send("Success");
-             
+            // res.send("Success"); 
          });
         }else if( scale === "All" && vendor !== "All"){
             Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productVendor = ?',vendor,function(err,result,fields){
@@ -49,21 +51,7 @@ module.exports = {
        
     },
 
-    scaleFilter (req,res){
-        Database.query('SELECT DISTINCT productScale FROM products',function(err,data,fields){
-            res.json(data);
-
-        });
-
-
-    },
-    vendorFilter (req,res) {
-        Database.query('SELECT DISTINCT productVendor FROM products',function(err,data,fields){
-            res.json(data);
-
-        });
-
-    },
+    
     Instock(req,res){
         if(req.session.loggedin === true){
             res.render('pages/ordering/instock')
@@ -113,12 +101,9 @@ module.exports = {
             res.redirect('/authenFailed')
         }
     },
-    success (req,res){
-        if(req.session.loggedin === true){
-            res.render('pages/success')
-        }else{
-            res.redirect('/authenFailed')
-        }
+    addUser (req,res){
+        res.render('pages/addUser',{x:10})
+        
     },
     authenFailed (req,res){
         res.render('pages/redirectPage')
