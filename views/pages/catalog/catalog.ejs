@@ -114,14 +114,14 @@
                      <form action="/catalog" method="GET">
                         Scale <br>
                         <select class='form-control' name="scale" id="scalefilter">
-                           <option value='All'>All</option>
+                           
                         </select>
                         <br>
                         
                       
                         Vendor <br>
                         <select class='form-control w-75 h-50' name="vendor" id="vendorfilter">
-                           <option value='All'>All</option>
+                           
                         </select>
                         <br>
                         <input class="btn btn-primary" type="submit" value="Search">
@@ -268,18 +268,11 @@
          url: 'scaleFilter',
          type: 'GET',
          dataType : 'json',
-         success: (data) => {var text;
-                  text = "";
-                  
+         success: (data) => {
+            
+                  $("#scalefilter").append("<option value='All'>All</option>");
            $.each(data, function(index, obj) {
                  
-                 /*  text+='<label class="container">'
-                    text+='<input type="checkbox" checked="checked">'
-                    text+='<span class="checkmark"></span>'
-                    text+=obj.productScale
-                       text+='</label>'*/
-
-                      // text+='<option value="'+obj.productScale+'">"'+obj.productScale+'"</option>'
                       $("#scalefilter").append("<option value='"+ obj.productScale + "'>" + obj.productScale + "</option>");
                  });
                   //$('#scalefilter').html( text);
@@ -292,18 +285,9 @@
          type: 'GET',
          dataType : 'json',
          success: (data) => {
-                  var text;
-                  text = "";
-                  
+                  $("#vendorfilter").append("<option value='All'>All</option>");
            $.each(data, function(index, obj) {
-                 
-                  /* text+='<label class="container">'
-                    text+='<input type="checkbox" checked="checked">'
-                    text+='<span class="checkmark"></span>'
-                    text+=obj.productVendor
-                       text+='</label>'*/
-                      // text+="<option value='"+obj.productVendor+"'>'"+obj.productVendor+"'</option>"
-                      $("#vendorfilter").append("<option  value='"+ obj.productVendor + "'>" + obj.productVendor + "</option>");
+                 $("#vendorfilter").append("<option  value='"+ obj.productVendor + "'>" + obj.productVendor + "</option>");
                  });
                   //$('#vendorfilter').html( text);
 
