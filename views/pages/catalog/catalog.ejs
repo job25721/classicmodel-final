@@ -17,6 +17,13 @@
    <link href="/css/simple-sidebar.css" rel="stylesheet">
 
    <link rel="stylesheet" href="/fontawesome/css/all.css">
+<<<<<<< HEAD
+   
+
+
+
+=======
+>>>>>>> master
 
 </head>
 
@@ -102,17 +109,23 @@
             <div class="container mt-5">
 
                <div class="row">
-
-                  <div class="col-lg-3 mt-3" style="padding-top: 21px;">
-
-                     <div class="list-group mt-5">
-                        <h5 class="</label>">Scale</h5>
-                        <div class="list-group-item" id="scalefilter"></div>
-                        <div class="list-group mt-5"></div>
-                        <h5 class="list-group-item">Verdor</h5>
-                        <div class="list-group-item" id="vendorfilter"></div>
-
-                     </div>
+                 
+                  <div class="col-lg-3 mt-3" style="padding-top: 121px;">            
+                     <form action="/catalog" method="GET">
+                        Scale <br>
+                        <select class='form-control' name="scale" id="scalefilter">
+                           <option value='All'>All</option>
+                        </select>
+                        <br>
+                        
+                      
+                        Vendor <br>
+                        <select class='form-control w-75 h-50' name="vendor" id="vendorfilter">
+                           <option value='All'>All</option>
+                        </select>
+                        <br>
+                        <input class="btn btn-primary" type="submit" value="Search">
+                      </form>
 
                   </div>
                   <!-- /.col-lg-3 -->
@@ -179,6 +192,7 @@
       </div>
    </div>
 
+   
    <!-- Bootstrap core JavaScript -->
    <script src="/jquery/jquery.min.js"></script>
    <script src="/js/bootstrap.bundle.min.js"></script>
@@ -244,6 +258,64 @@
       $(document).ajaxError(() => {
          $('#demo').html('Error: unknown ajaxError!');
       });
+   </script>
+
+<script type="text/javascript">
+  
+    
+   $(document).ready(() => {
+       $.ajax({
+         url: 'scaleFilter',
+         type: 'GET',
+         dataType : 'json',
+         success: (data) => {var text;
+                  text = "";
+                  
+           $.each(data, function(index, obj) {
+                 
+                 /*  text+='<label class="container">'
+                    text+='<input type="checkbox" checked="checked">'
+                    text+='<span class="checkmark"></span>'
+                    text+=obj.productScale
+                       text+='</label>'*/
+
+                      // text+='<option value="'+obj.productScale+'">"'+obj.productScale+'"</option>'
+                      $("#scalefilter").append("<option value='"+ obj.productScale + "'>" + obj.productScale + "</option>");
+                 });
+                  //$('#scalefilter').html( text);
+
+           },
+       });
+
+       $.ajax({
+         url: 'vendorFilter',
+         type: 'GET',
+         dataType : 'json',
+         success: (data) => {
+                  var text;
+                  text = "";
+                  
+           $.each(data, function(index, obj) {
+                 
+                  /* text+='<label class="container">'
+                    text+='<input type="checkbox" checked="checked">'
+                    text+='<span class="checkmark"></span>'
+                    text+=obj.productVendor
+                       text+='</label>'*/
+                      // text+="<option value='"+obj.productVendor+"'>'"+obj.productVendor+"'</option>"
+                      $("#vendorfilter").append("<option  value='"+ obj.productVendor + "'>" + obj.productVendor + "</option>");
+                 });
+                  //$('#vendorfilter').html( text);
+
+           },
+       });
+      
+     });
+   
+     $(document).ajaxError(() => {
+       $('#demo').html('Error: unknown ajaxError!');
+     });
+
    </script>
 
 

@@ -16,8 +16,13 @@ module.exports = {
         }
     },
     Catalog (req,res){
-
-        Database.query('SELECT `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`,`imgSrc` FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
+        console.log(req.query.scale);
+        console.log(req.query.vendor);
+        var scale = req.query.scale;
+        var vendor = req.query.vendor;
+        if((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All") ){
+        Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)',function(err,result,fields){
+      
             // response.end;
             //var myJ = [{data : 'aawfawf'},{data : 'sfkiohek5o'}];
              res.render('pages/catalog/catalog',{result : result })
@@ -25,7 +30,20 @@ module.exports = {
            // res.json(result);
             // res.send("Success"); 
          });
-       //res.render('pages/catalog/catalog')
+        }else if( scale === "All" && vendor !== "All"){
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productVendor = ?',vendor,function(err,result,fields){
+                 res.render('pages/catalog/catalog',{result : result })
+            })
+        }else if(scale !== "All" && vendor === "All"){
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ?',scale,function(err,result,fields){
+                res.render('pages/catalog/catalog',{result : result })
+           })
+        }else{
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ? and productVendor = ?',[scale,vendor],function(err,result,fields){
+                res.render('pages/catalog/catalog',{result : result })
+           })
+        }
+       
     },
 
     
