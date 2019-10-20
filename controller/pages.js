@@ -47,15 +47,15 @@ module.exports = {
 
 
     Instock(req, res) {
-       /* if (req.session.loggedin === true) {
+        if (req.session.loggedin === true) {
             res.render('pages/ordering/instock')
         } else {
             res.redirect('/authenFailed')
-        }*/
+        }
 
-        Database.query('SELECT * FROM products', function (err, result, fields) {
-            res.render('pages/ordering/instock', {result: result});
-        })
+        // Database.query('SELECT * FROM products', function (err, result, fields) {
+        //     res.render('pages/ordering/instock', {result: result});
+        // })
 
 
 

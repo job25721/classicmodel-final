@@ -17,14 +17,7 @@
    <link href="/css/simple-sidebar.css" rel="stylesheet">
 
    <link rel="stylesheet" href="/fontawesome/css/all.css">
-<<<<<<< HEAD
-
-
-
-
-=======
-   <<<<<<< HEAD=======>>>>>>> master
->>>>>>> 915f0748486d04ad00eeed8ae1b4e89d27c497e9
+   
 
 </head>
 
@@ -132,13 +125,14 @@
                         </select>
                         <br>
                         <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
-                        <h3>Selected </h3>
+                        <input class="btn btn-success" type="submit" value="Clear" onclick="">
+                        <hr>
+                        <p class="text-lg">Filter</p>
                         <h5> Vendor: <%= Ven  %></h5>
                         <h5>Scale : <%= Sc  %> </h5>
                         <h5>Found <%= rowNum  %> products </h5>
                      </form>
-                     
-                  </div>
+               </div>
 
 
                   <div class="col-lg-9 mt-3">
@@ -199,11 +193,6 @@
    </div>
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 915f0748486d04ad00eeed8ae1b4e89d27c497e9
    <!-- Bootstrap core JavaScript -->
    <script src="/jquery/jquery.min.js"></script>
    <script src="/js/bootstrap.bundle.min.js"></script>
@@ -231,19 +220,14 @@
             type: 'GET',
             dataType: 'json',
             success: (data) => {
-
                $("#scalefilter").append("<option selected='selected' value='All'>All</option>");
                $.each(data, function (index, obj) {
-
                   $("#scalefilter").append("<option  value='" + obj.productScale + "'>" + obj
                      .productScale + "</option>");
                });
                //$('#scalefilter').html( text);
-
             },
          });
-
-
          $.ajax({
             url: '/catalog/vendorFilter',
             type: 'GET',
@@ -255,25 +239,15 @@
                      .productVendor + "</option>");
                });
                //$('#vendorfilter').html( text);
-
             },
          });
-
-
-
       });
-
-
       $(document).ajaxError(() => {
          $('#demo').html('Error: unknown ajaxError!');
       });
    </script>
 
-<<<<<<< HEAD
-=======
    <script type="text/javascript">
-
-
       $(document).ready(() => {
          $.ajax({
             url: 'scaleFilter',
@@ -282,14 +256,11 @@
             success: (data) => {
                $("#scalefilter").append("<option value='All'>All</option>");
                $.each(data, function (index, obj) {
-
                   $("#scalefilter").append("<option value='" + obj.productScale + "'>" + obj.productScale + "</option>");
                });
                //$('#scalefilter').html( text);
-
             },
          });
-
          $.ajax({
             url: 'vendorFilter',
             type: 'GET',
@@ -300,19 +271,14 @@
                   $("#vendorfilter").append("<option  value='" + obj.productVendor + "'>" + obj.productVendor + "</option>");
                });
                //$('#vendorfilter').html( text);
-
             },
          });
-
       });
-
       $(document).ajaxError(() => {
          $('#demo').html('Error: unknown ajaxError!');
       });
-
    </script>
 
->>>>>>> 915f0748486d04ad00eeed8ae1b4e89d27c497e9
 
 </body>
 
