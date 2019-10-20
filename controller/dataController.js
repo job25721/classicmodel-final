@@ -8,14 +8,14 @@ module.exports = {
         });
     },
     vendorFilter(req, res) {
-        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {            
+        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {
             res.json(data);
         });
     },
-    fetchDetails(req,res){
-        var empNum = parseInt(req.session.user) 
-        Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum,(err,data)=>{
-            
+    fetchDetails(req, res) {
+        var empNum = parseInt(req.session.user)
+        Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum, (err, data) => {
+
             res.json(data)
         })
     },
@@ -31,12 +31,26 @@ module.exports = {
                 bcrypt.compare(pass.toString(), data[0].pswd, function(err, bool) {
                     res.send("Password Match : " + bool)
                 });
-            }else{
+            } else {
                 res.send("no such employee")
-            }           
-            
+            }
+
         })
-        
+
     },
-    
+   
+    Customer(req, res) {
+        Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers', function (err, data, fields) {
+            res.json(data);
+           // console.log(datatableID)
+        }); 
+    },
+    instockData (req,res){
+        Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`',(err,data)=>{
+            res.json(data)
+        })
+
+    }
+
+
 }

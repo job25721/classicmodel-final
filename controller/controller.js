@@ -13,7 +13,7 @@ module.exports = {
         pswd = req.body.password
         Database.query('SELECT employeeNumber FROM employees WHERE employeeNumber = ' + empNum, (err, data) => {
 
-            console.log(data.length);
+            
             if (data.length > 0) {
                 Database.query('SELECT employeeNumber FROM users WHERE employeeNumber = ' + empNum, (err, data2) => {
                     if (data2.length > 0) {

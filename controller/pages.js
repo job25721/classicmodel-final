@@ -54,7 +54,6 @@ module.exports = {
         }*/
 
         Database.query('SELECT * FROM products', function (err, result, fields) {
-            console.log(result);
             res.render('pages/ordering/instock', {result: result});
         })
 
