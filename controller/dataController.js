@@ -38,11 +38,15 @@ module.exports = {
 
     },
    
+    //Customer Added,Delete
     Customer(req, res) {
         Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers', function (err, data, fields) {
             res.json(data);
            // console.log(datatableID)
         });
+    },
+    Delete(req,res){
+        Database
     }
 
 
