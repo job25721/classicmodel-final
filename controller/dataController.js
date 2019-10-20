@@ -38,27 +38,19 @@ module.exports = {
         })
 
     },
-<<<<<<< HEAD
    
     //Customer Added,Delete
-=======
 
->>>>>>> origin
     Customer(req, res) {
         Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers , employees WHERE customers.salesRepEmployeeNumber = ' + req.session.user, function (err, data, fields) {
             res.json(data);
         });
     },
-<<<<<<< HEAD
-    Delete(req,res){
-        Database
-=======
     instockData(req, res) {
         Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`', (err, data) => {
             res.json(data)
         })
 
->>>>>>> origin
     }
 
 

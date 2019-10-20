@@ -4,10 +4,6 @@ module.exports = (app) => {
     app.get('/catalog/vendorFilter', dataCon.vendorFilter)
     app.get('/fetchDetails',dataCon.fetchDetails)
     app.post('/select',dataCon.select)
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
     app.get('/customerFetch',dataCon.Customer)
     app.get('/instockFetch',dataCon.instockData);
 
