@@ -19,13 +19,14 @@ module.exports = {
             res.json(data)
         })
     },
+    
     select (req,res){
         user = parseInt(req.body.num) 
         pass = req.body.pass
-        console.log(user);
+        
         
         Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user,(err,data)=>{
-            // console.log(err);
+            
             if(data.length > 0){
                 bcrypt.compare(pass.toString(), data[0].pswd, function(err, bool) {
                     res.send("Password Match : " + bool)
@@ -36,5 +37,6 @@ module.exports = {
             
         })
         
-    }
+    },
+    
 }

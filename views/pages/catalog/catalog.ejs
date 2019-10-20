@@ -17,13 +17,10 @@
    <link href="/css/simple-sidebar.css" rel="stylesheet">
 
    <link rel="stylesheet" href="/fontawesome/css/all.css">
-<<<<<<< HEAD
-   
 
 
 
-=======
->>>>>>> master
+
 
 </head>
 
@@ -43,7 +40,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4 shadow fixed-top">
                <div class="container">
                   <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none"
-                     href="#">
+                     href="/catalog?scale=All&vendor=All">
                      <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-helicopter fa-lg"></i>
                      </div>
@@ -109,26 +106,25 @@
             <div class="container mt-5">
 
                <div class="row">
-                 
-                  <div class="col-lg-3 mt-3" style="padding-top: 121px;">            
-                     <form action="/catalog" method="GET">
+
+                  <div class="col-lg-3 mt-3" style="padding-top: 121px;">
+                     <form action="/catalog" method="GET" name=Form1>
                         Scale <br>
                         <select class='form-control' name="scale" id="scalefilter">
-                           
                         </select>
-                        <br>
-                        
-                      
-                        Vendor <br>
+                        <br>Vendor <br>
                         <select class='form-control w-75 h-50' name="vendor" id="vendorfilter">
-                           
                         </select>
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Search">
-                      </form>
-
+                        <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
+                        <h3>Selected </h3>
+                        <h5> Vendor: <%= Ven  %></h5>
+                        <h5>Scale : <%= Sc  %> </h5>
+                        <h5>Found <%= rowNum  %> products </h5>
+                     </form>
+                     
                   </div>
-                  <!-- /.col-lg-3 -->
+
 
                   <div class="col-lg-9">
                      <h2 class="my-4">Product Catalog</h2>
@@ -171,10 +167,9 @@
                                  <h4 class="card-title">
                                     <a href="#"><%= result[i].productName %></a>
                                  </h4>
-                                 <h5>Scale <%= result[i].productScale %></h5>
                                  <h5>$<%= result[i].buyPrice %> </h5>
+                                 <h5>Scale <%= result[i].productScale %></h5>
                                  <h5>Seller: <%= result[i].productVendor %></h5>
-                                 <h5>ProductLine: <%= result[i].productLine %></h5>
                                  <p class="card-text"><%= result[i].productDescription %></p>
                               </div>
                               <div class="card-footer">
@@ -192,7 +187,9 @@
       </div>
    </div>
 
-   
+
+
+
    <!-- Bootstrap core JavaScript -->
    <script src="/jquery/jquery.min.js"></script>
    <script src="/js/bootstrap.bundle.min.js"></script>
@@ -209,97 +206,53 @@
 
 
 
-   <!-- filter srcipt -->
+
+
+
    <script type="text/javascript">
+      
       $(document).ready(() => {
          $.ajax({
-            url: 'scaleFilter',
+            url: '/catalog/scaleFilter',
             type: 'GET',
             dataType: 'json',
             success: (data) => {
-               var text;
-               text = "";
 
+               $("#scalefilter").append("<option selected='selected' value='All'>All</option>");
                $.each(data, function (index, obj) {
 
-                  text += '<label class="container">'
-                  text += '<input type="checkbox" class="scaleFilter">'
-                  text += '<span class="checkmark"></span>'
-                  text += '  '
-                  text += obj.productScale
-                  text += '</label>'
+                  $("#scalefilter").append("<option  value='" + obj.productScale + "'>" + obj
+                     .productScale + "</option>");
                });
-               $('#scalefilter').html(text);
+               //$('#scalefilter').html( text);
 
             },
          });
+
 
          $.ajax({
-            url: 'vendorFilter',
+            url: '/catalog/vendorFilter',
             type: 'GET',
             dataType: 'json',
             success: (data) => {
-               var text;
-               text = "";
+               $("#vendorfilter").append("<option  value='All' >All</option>");
                $.each(data, function (index, obj) {
-                  text += '<label class="container">'
-                  text += '<input type="checkbox">'
-                  text += '<span class="checkmark"></span>'
-                  text += '  '
-                  text += obj.productVendor
-                  text += '</label>'
+                  $("#vendorfilter").append("<option  value='" + obj.productVendor + "'>" + obj
+                     .productVendor + "</option>");
                });
-               $('#vendorfilter').html(text);
+               //$('#vendorfilter').html( text);
+
             },
          });
 
+
+
       });
+
 
       $(document).ajaxError(() => {
          $('#demo').html('Error: unknown ajaxError!');
       });
-   </script>
-
-<script type="text/javascript">
-  
-    
-   $(document).ready(() => {
-       $.ajax({
-         url: 'scaleFilter',
-         type: 'GET',
-         dataType : 'json',
-         success: (data) => {
-            
-                  $("#scalefilter").append("<option value='All'>All</option>");
-           $.each(data, function(index, obj) {
-                 
-                      $("#scalefilter").append("<option value='"+ obj.productScale + "'>" + obj.productScale + "</option>");
-                 });
-                  //$('#scalefilter').html( text);
-
-           },
-       });
-
-       $.ajax({
-         url: 'vendorFilter',
-         type: 'GET',
-         dataType : 'json',
-         success: (data) => {
-                  $("#vendorfilter").append("<option value='All'>All</option>");
-           $.each(data, function(index, obj) {
-                 $("#vendorfilter").append("<option  value='"+ obj.productVendor + "'>" + obj.productVendor + "</option>");
-                 });
-                  //$('#vendorfilter').html( text);
-
-           },
-       });
-      
-     });
-   
-     $(document).ajaxError(() => {
-       $('#demo').html('Error: unknown ajaxError!');
-     });
-
    </script>
 
 
