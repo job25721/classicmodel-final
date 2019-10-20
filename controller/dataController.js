@@ -19,16 +19,16 @@ module.exports = {
             res.json(data)
         })
     },
-    
-    select (req,res){
-        user = parseInt(req.body.num) 
+
+    select(req, res) {
+        user = parseInt(req.body.num)
         pass = req.body.pass
-        
-        
-        Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user,(err,data)=>{
-            
-            if(data.length > 0){
-                bcrypt.compare(pass.toString(), data[0].pswd, function(err, bool) {
+
+
+        Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user, (err, data) => {
+
+            if (data.length > 0) {
+                bcrypt.compare(pass.toString(), data[0].pswd, function (err, bool) {
                     res.send("Password Match : " + bool)
                 });
             } else {
@@ -38,15 +38,14 @@ module.exports = {
         })
 
     },
-   
+
     Customer(req, res) {
-        Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers', function (err, data, fields) {
+        Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers , employees WHERE customers.salesRepEmployeeNumber = ' + req.session.user, function (err, data, fields) {
             res.json(data);
-           // console.log(datatableID)
-        }); 
+        });
     },
-    instockData (req,res){
-        Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`',(err,data)=>{
+    instockData(req, res) {
+        Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`', (err, data) => {
             res.json(data)
         })
 
