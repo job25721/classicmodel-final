@@ -178,7 +178,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome back </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName"></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empRole"></span>
                                 <img class="img-profile rounded-circle" src="/img/profile.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -218,7 +220,7 @@
                     </div>
 
                     <table class="table">
-                        <thead> 
+                        <thead>
                             <tr>
                                 <th>productCode</th>
                                 <th>productName</th>
@@ -258,18 +260,34 @@
     <script src="/fontawesome/js/all.js"></script>
     <script src="/js/navbar.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: 'fetchDetails',
+                type: 'GET',
+                dataType: 'json',
+                success: (data) => {
+                    name = data[0].firstName + " " + data[0].lastName
+                    role = data[0].jobTitle
+                    $('#empName').html(name)
+                    $('#empRole').html(role)
+                }
+
+            })
+        })
+    </script>
+
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-
     </script>
 
     <script type="text/javascript">
         $(document).ready(() => {
-            $.ajax({ 
+            $.ajax({
                 url: 'instockFetch',
                 type: 'GET',
                 dataType: 'json',
@@ -295,6 +313,8 @@
             $('#demo').html('Error: unknown ajaxError!');
         });
     </script>
+
+
 
 </body>
 
