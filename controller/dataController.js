@@ -47,7 +47,7 @@ module.exports = {
     instockData(req, res) {
         Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`', (err, data) => {
             res.json(data)
-        })
+    })
 
     }
 
