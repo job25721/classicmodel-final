@@ -112,26 +112,32 @@
 
                <div class="row">
 
-                  <div class="col-lg-3 mt-3">
-                     <div class="card mb-4 border-bottom-primary">
-                        <form action="/catalog" method="GET" name=Form1>
-                           Scale <br>
-                           <select class='form-control' name="scale" id="scalefilter">
-                           </select>
-                           <br>Vendor <br>
-                           <select class='form-control w-75 h-50' name="vendor" id="vendorfilter">
-                           </select>
-                           <br>
-                           <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
-                           <input class="btn btn-success" type="submit" value="Clear" onclick="">
-                           <hr>
+                  <div class="col-lg-3 mt-5">
+                     <div class="card border-bottom-primary">
+                        <div class="card-body" style="padding-bottom: 0px ;">
+                           <form action="/catalog" method="GET" name=Form1>
+                                 Scale
+                              <select class='form-control mt-2 mb-3' name="scale" id="scalefilter">
+                              </select>
+                                 Vendor
+                              <select class='form-control w-75 h-50 mt-2 mb-3' name="vendor" id="vendorfilter">
+                              </select>
 
-                        </form>
+                              <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
+                              <input class="btn btn-success" type="submit" value="Clear" onclick="">
+                              <hr>
+
+                           </form>
+                        </div>
+                        <div class="mx-3 my-2">
+                           <p class="text-lg">Filter</p>
+                           <h5> Vendor: <%= Ven  %></h5>
+                           <h5>Scale : <%= Sc  %> </h5>
+                           <h5>Found <%= rowNum  %> products </h5>
+                        </div>
+
                      </div>
-                     <p class="text-lg">Filter</p>
-                     <h5> Vendor: <%= Ven  %></h5>
-                     <h5>Scale : <%= Sc  %> </h5>
-                     <h5>Found <%= rowNum  %> products </h5>
+
                   </div>
 
 
