@@ -24,7 +24,7 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-helicopter"></i>
                 </div>
@@ -34,7 +34,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item active">
-                <a class="nav-link" href="/home">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-home "></i>
                     <span>Home</span></a>
             </li>
@@ -54,23 +54,23 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Ordering:</h6>
-                        <a class="collapse-item" href="/instock">In stock</a>
-                        <a class="collapse-item" href="/preorder">Pre-order</a>
+                        <a class="collapse-item" href="/admin/instock">In stock</a>
+                        <a class="collapse-item" href="/admin/preorder">Pre-order</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/status">
+                <a class="nav-link" href="/admin/status">
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Order Status</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/discount">
+                <a class="nav-link" href="/admin/discount">
                     <i class="fas fa-fw fa-tag"></i>
                     <span>Discount</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/preordermanage">
+                <a class="nav-link" href="/admin/preordermanage">
                     <i class="fas fa-fw fa-calendar-alt"></i>
                     <span>Pre-order management</span></a>
             </li>
@@ -81,7 +81,7 @@
                 Customer
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/customer">
+                <a class="nav-link" href="/admin/customer">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers management</span></a>
             </li>
@@ -91,7 +91,7 @@
                 Employee
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="employee">
+                <a class="nav-link" href="/admin/employee">
                     <i class="fas fa-fw fa-id-card"></i>
                     <span>Employees management</span></a>
             </li>
@@ -243,7 +243,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $.ajax({
-                url: 'fetchDetails',
+                url: '/admin/fetchDetails',
                 type: 'GET',
                 dataType: 'json',
                 success: (data) => {
@@ -268,7 +268,7 @@
     <script type="text/javascript">
         $(document).ready(() => {
             $.ajax({
-                url: 'instockFetch',
+                url: '/admin/instock/instockFetch',
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
@@ -296,10 +296,7 @@
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f98a45f2d8646fb8da529707d7e0051181899beb
 </body>
 
 </html>

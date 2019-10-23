@@ -1,45 +1,62 @@
 const Database = require('../config/database')
 const bcrypt = require('bcrypt');
 
-
 module.exports = {
     Index(req, res) {
         res.render('pages/index')
     },
     Login(req, res) {
-        if(req.session.loggedin){
+        if (req.session.loggedin) {
             res.redirect('/admin')
-        }else{
+        } else {
             res.render('pages/login')
         }
     },
     Catalog(req, res) {
-            var scale = req.query.scale;
-            var vendor = req.query.vendor;
-            
-            if ((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All")) {
-                Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)', function (err, result, fields) {
-                   
-                    res.render('pages/catalog/catalog', {result: result , Sc : scale , Ven : vendor , rowNum : result.length })
-                });
-            } else if (scale === "All" && vendor !== "All") {
-                Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productVendor = ?', vendor, function (err, result, fields) {
-                   
-                    res.render('pages/catalog/catalog', { result: result , Sc : scale , Ven : vendor , rowNum : result.length})
-                })
-            } else if (scale !== "All" && vendor === "All") {
-                Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ?', scale, function (err, result, fields) {
-                    
-                    res.render('pages/catalog/catalog', {result: result , Sc : scale , Ven : vendor , rowNum : result.length})
-                })
-            } else {
-                Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ? and productVendor = ?', [scale, vendor], function (err, result, fields) {
-                    
-                    res.render('pages/catalog/catalog', {result: result , Sc : scale , Ven : vendor , rowNum : result.length})
-                })
-            }
-       
+        var scale = req.query.scale;
+        var vendor = req.query.vendor;
 
+        if ((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All")) {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)', function (err, result, fields) {
+
+                res.render('pages/catalog/catalog', {
+                    result: result,
+                    Sc: scale,
+                    Ven: vendor,
+                    rowNum: result.length
+                })
+            });
+        } else if (scale === "All" && vendor !== "All") {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productVendor = ?', vendor, function (err, result, fields) {
+
+                res.render('pages/catalog/catalog', {
+                    result: result,
+                    Sc: scale,
+                    Ven: vendor,
+                    rowNum: result.length
+                })
+            })
+        } else if (scale !== "All" && vendor === "All") {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ?', scale, function (err, result, fields) {
+
+                res.render('pages/catalog/catalog', {
+                    result: result,
+                    Sc: scale,
+                    Ven: vendor,
+                    rowNum: result.length
+                })
+            })
+        } else {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ? and productVendor = ?', [scale, vendor], function (err, result, fields) {
+
+                res.render('pages/catalog/catalog', {
+                    result: result,
+                    Sc: scale,
+                    Ven: vendor,
+                    rowNum: result.length
+                })
+            })
+        }
     },
     addUser(req, res) {
         res.render('pages/addUser', {

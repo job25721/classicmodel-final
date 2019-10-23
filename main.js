@@ -13,9 +13,6 @@ const sequelize = require('./config/database')
 // }).catch(err => {
 //     console.log('Unable to connect to the database', err);
 // })
-
-const adminRouter = require('./routes/admin')
-const IndexRouter = require('./routes/index')
 //connect to database
 Database.connect((err) => {
     if (err) {
@@ -42,10 +39,15 @@ Database.connect((err) => {
         //serve static css bootstrap
         app.use(express.static('style'))
         app.use(express.static('public'))
-        //routes
-        app.use('/admin',adminRouter) //adminPageRouter include auth middleware
-        app.use('/',IndexRouter) //indexPageRouter
+        //routers
+        app.use('/',require('./routes/index')) //indexPageRouter
         require('./routes/logger')(app) //logger
+        
+        //adminPageRouter include auth middleware inside
+        app.use('/admin',require('./routes/admin')) 
+        
+        
+       
 
 
         //listen

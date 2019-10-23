@@ -25,6 +25,8 @@ module.exports = {
     Employee(req, res) {
         res.render('pages/employee')
     },
+    
+    //dataFetch
     fetchDetails(req, res) {
         var empNum = parseInt(req.session.user)
         Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum, (err, data) => {
