@@ -105,28 +105,28 @@
 <body>
         <img src="/bg/loginBG.jpg" alt="" class="bg" style="opacity: 1;">
         <div class="main">
-        <form action="/login" method="POST">
-            <p class="h4 text-center mb-4 mt-5">Sign in</p>
-            <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
-            <input type="number" name="username" id="defaultFormLoginEmailEx" class="form-control"
-                placeholder="Enter Username" / required>
-            <br />
-            <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
-            <input type="password" name="password" id="defaultFormLoginPasswordEx" class="form-control"
-                placeholder="Enter Password" / required>
-            <div class="text-center mt-4">
-                <button id="submit" class="btn btn-dark"> Login </button>
+            <form action="/login" method="POST">
+                <p class="h4 text-center mb-4 mt-5">Sign in</p>
+                <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
+                <input type="number" name="username" id="employeeNumber" class="form-control"
+                    placeholder="Enter Username" required>
+                <br>
+                <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
+                <input type="password" name="password" id="pass" class="form-control"
+                    placeholder="Enter Password" required>
+                <div class="text-center mt-4">
+                    <button id="submit" class="btn btn-dark"> Login </button>
+                </div>
+            </form>
+            <div id="line" class="collapse">
+                <hr>
             </div>
-        </form>
-        <div id="line" class="collapse">
-            <hr>
-        </div>
 
-        <div class="w-100 alert alert-danger alert-dismissible collapse" id="myAlert" role="alert">
-            <strong>Error404 : </strong> Login error
-            <button type="button" class="close" id="btnSubmit" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <div class="w-100 alert alert-danger alert-dismissible collapse" id="myAlert" role="alert">
+                <strong>Error404 : </strong> Login error
+                <button type="button" class="close" id="btnSubmit" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
         </div>
         <!-- <hr> -->
         <a href="/addUser"><button class="btn btn-success collapse">Add User</button></a>
@@ -142,7 +142,7 @@
 </body>
 <script src="/jquery/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function(){
         $('#line').show('fade')
         $('#myAlert').show('fade')
         $('#btnSubmit').click(function () {
@@ -150,6 +150,8 @@
             $('#myAlert').hide('fade')
         })
     })
+        
+    
 </script>
 
 </html>

@@ -32,7 +32,7 @@ module.exports = {
         });
     },
 
-    login(req, res) {
+    login(req, res) {        
         empNum = parseInt(req.body.username)
         password = req.body.password
         Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + empNum, (err, data) => {
@@ -47,7 +47,7 @@ module.exports = {
                     }
                 });
             }else{
-                res.redirect('/login')
+                res.render('pages/login',{status:"failed"})
             }
             
         });

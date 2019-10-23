@@ -6,7 +6,12 @@ module.exports = {
         res.render('pages/index')
     },
     Login(req, res) {
-        res.render('pages/login')
+        if(req.session.loggedin){
+            res.redirect('/home')
+        }else{
+            res.render('pages/login')
+        }
+        
     },
     Home(req, res) {
         if (req.session.loggedin === true) {
