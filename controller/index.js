@@ -1,4 +1,5 @@
 const Database = require('../config/database')
+const bcrypt = require('bcrypt');
 
 
 module.exports = {
@@ -7,21 +8,12 @@ module.exports = {
     },
     Login(req, res) {
         if(req.session.loggedin){
-            res.redirect('/home')
+            res.redirect('/admin')
         }else{
             res.render('pages/login')
         }
-        
-    },
-    Home(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/home')
-        } else {
-            res.redirect('/authenFailed')
-        }
     },
     Catalog(req, res) {
-        
             var scale = req.query.scale;
             var vendor = req.query.vendor;
             
@@ -49,67 +41,37 @@ module.exports = {
        
 
     },
-
-
-    Instock(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/ordering/instock')
-        } else {
-            res.redirect('/authenFailed')
-        }
-
-        // Database.query('SELECT * FROM products', function (err, result, fields) {
-        //     res.render('pages/ordering/instock', {result: result});
-        // })
-
-
-
-    },
-    Preorder(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/ordering/pre-order')
-        } else {
-            res.redirect('/authenFailed')
-        }
-    },
-    Status(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/status')
-        } else {
-            res.redirect('/authenFailed')
-        }
-    },
-    Discount(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/discount')
-        } else {
-            res.redirect('/authenFailed')
-        }
-    },
-    Preordermanage(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/preorder')
-        } else {
-            res.redirect('/authenFailed')
-        }
-    },
-    Customer(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/customer')
-        } else {
-            res.redirect('/authenFailed')
-        }
-    },
-    Employee(req, res) {
-        if (req.session.loggedin === true) {
-            res.render('pages/employee')
-        } else {
-            res.redirect('/authenFailed')
-        }
-    },
     addUser(req, res) {
         res.render('pages/addUser', {
             x: 10
+        })
+
+    },
+    scaleFilter(req, res) {
+        Database.query('SELECT DISTINCT productScale FROM products', function (err, data, fields) {
+            res.json(data);
+        });
+    },
+    vendorFilter(req, res) {
+        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {
+            res.json(data);
+        });
+    },
+    select(req, res) {
+        user = parseInt(req.body.num)
+        pass = req.body.pass
+
+
+        Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user, (err, data) => {
+
+            if (data.length > 0) {
+                bcrypt.compare(pass.toString(), data[0].pswd, function (err, bool) {
+                    res.send("Password Match : " + bool)
+                });
+            } else {
+                res.send("no such employee")
+            }
+
         })
 
     },

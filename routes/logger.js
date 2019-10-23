@@ -1,8 +1,7 @@
-const loggerCon = require('../controller/controller')
+const logger = require('../controller/logger')
 
 module.exports = (app) => {
-    app.post('/login', loggerCon.login)
-    app.get('/logout', loggerCon.logout)
-
-    app.post('/add',loggerCon.addUser)
+    app.post('/login', logger.login)
+    app.post('/add',logger.addUser)
+    app.get('/logout', logger.logout)
 }
