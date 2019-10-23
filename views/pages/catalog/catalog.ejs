@@ -116,10 +116,10 @@
                      <div class="card border-bottom-primary">
                         <div class="card-body" style="padding-bottom: 0px ;">
                            <form action="/catalog" method="GET" name=Form1>
-                                 Scale
+                              Scale
                               <select class='form-control mt-2 mb-3' name="scale" id="scalefilter">
                               </select>
-                                 Vendor
+                              Vendor
                               <select class='form-control mt-2 mb-3' name="vendor" id="vendorfilter">
                               </select>
 
@@ -251,41 +251,6 @@
          $('#demo').html('Error: unknown ajaxError!');
       });
    </script>
-
-   <script type="text/javascript">
-      $(document).ready(() => {
-         $.ajax({
-            url: 'scaleFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               $("#scalefilter").append("<option value='All'>All</option>");
-               $.each(data, function (index, obj) {
-                  $("#scalefilter").append("<option value='" + obj.productScale + "'>" + obj
-                     .productScale + "</option>");
-               });
-               //$('#scalefilter').html( text);
-            },
-         });
-         $.ajax({
-            url: 'vendorFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               $("#vendorfilter").append("<option value='All'>All</option>");
-               $.each(data, function (index, obj) {
-                  $("#vendorfilter").append("<option  value='" + obj.productVendor + "'>" + obj
-                     .productVendor + "</option>");
-               });
-               //$('#vendorfilter').html( text);
-            },
-         });
-      });
-      $(document).ajaxError(() => {
-         $('#demo').html('Error: unknown ajaxError!');
-      });
-   </script>
-
 
 </body>
 
