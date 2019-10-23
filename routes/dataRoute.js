@@ -7,5 +7,6 @@ module.exports = (app) => {
 
     app.get('/customerFetch',dataCon.Customer)
     app.get('/instockFetch',dataCon.instockData);
+   
 
 }

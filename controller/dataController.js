@@ -23,6 +23,7 @@ module.exports = {
     select(req, res) {
         user = parseInt(req.body.num)
         pass = req.body.pass
+        
 
 
         Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user, (err, data) => {
@@ -47,7 +48,7 @@ module.exports = {
     instockData(req, res) {
         Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`', (err, data) => {
             res.json(data)
-        })
+    })
 
     }
 

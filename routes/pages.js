@@ -15,6 +15,8 @@ module.exports = (app) => {
     app.get('/customer', pagesCon.Customer)
     app.get('/employee', pagesCon.Employee)
     app.get('/addUser',pagesCon.addUser)
+    app.post('/addItem',pagesCon.addItem)
+    app.get('/cartitem',pagesCon.cartitem)
 
 
 

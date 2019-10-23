@@ -10,12 +10,10 @@
 
     <title>Order Stock</title>
 
-    <!-- Bootstrap core CSS -->
+
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
-
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
 
 </head>
@@ -24,10 +22,8 @@
 
     <div id="wrapper">
 
-        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-helicopter"></i>
@@ -35,25 +31,20 @@
                 <div class="sidebar-brand-text">Classsic Model<sup>Shop</sup></div>
             </a>
 
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-home "></i>
                     <span>Home</span></a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
                 Product
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -84,14 +75,11 @@
                     <span>Pre-order management</span></a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
                 Customer
             </div>
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/customer">
                     <i class="fas fa-fw fa-user"></i>
@@ -99,32 +87,24 @@
             </li>
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
                 Employee
             </div>
-            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="employee">
                     <i class="fas fa-fw fa-id-card"></i>
                     <span>Employees management</span></a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
 
         </ul>
-        <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -173,13 +153,25 @@
                             </div>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
+                        <div class="mr-2 d-flex justify-content align-items-center">
+                            <ul>
+                                <li style="list-style-type: none;">
+                                    <span class=" text-gray-600 small" id="empName"></span>
+                                </li>
+                                <li style="list-style-type: none;">
+                                    <span class=" text-gray-600 small" id="empRole"></span>
+                                </li>
+                            </ul>
+
+                        </div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
+
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="/img/profile.jpg">
+
+                                <img class="img-profile rounded-circle" src="/img/pm.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -207,37 +199,67 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">In stock product</h1>
-                    </div>
 
-                    <table class="table">
-                        <thead> 
+                    </div>
+                    <div style="font-size: 40px;" id="demo"></div>
+                    <div style="font-size: 25px;" class="txt-heading">Your Cart have <div style="display: inline ;font-size: 30px; "
+                            id="quantity-product"> </div>
+                           
+                        products  <div style="display: inline ;font-size: 30px; "id="piece-product"> </div> pieces </div>
+                        <div style="font-size: 25px;">
+                    <a id="btnCheckout" href="cartitem">See Your Cart</a> <br>
+                    <a id="btnEmpty" href="emptycart">Empty Cart</a>
+                </div>
+                    <table class="table text-center table-striped" id="dataTable" width="100%" cellspacing="0"
+                        style="border: black;">
+                        <thead>
                             <tr>
-                                <th>productCode</th>
-                                <th>productName</th>
-                                <th>productLine</th>
-                                <th>productScale</th>
-                                <th>productVendor</th>
-                                <th>quantityInStock</th>
-                                <th>buyPrice</th>
+                                <th>ProductImage</th>
+                                <th>ProductName</th>
+                                <th>ProductScale</th>
+                                <th>ProductVendor</th>
+                                <th>QuantityInStock</th>
+                                <th>BuyPrice</th>
+
                             </tr>
+                            <% for(var i=0; i < productData.length; i++) { %>
+                            <div class="product-item">
+                                <tr>
+
+
+                                    <td class="product-img"><img style="display: block;" width="50px" height="50px"
+                                            src="/img/<%= productData[i].imgSrc %>" alt="NotFound"></td>
+                                    <td class="product-name"><%= productData[i].productName %></td>
+                                    <td class="product-scale"><%= productData[i].productScale %></td>
+                                    <td class="product-vendor"><%= productData[i].productVendor %> </td>
+                                    <td class="product-vendor"><%= productData[i].quantityInStock %> </td>
+                                    <td class="product-price"><%= productData[i].buyPrice %> </td>
+
+                                    <td>
+                                        <form id="<%= productData[i].productCode %>" method="POST" action="/addItem">
+                                            <input type="text" class="product-quantity" name="quantity" value="1"
+                                                size="2" />
+                                            <input type="hidden" name="code"
+                                                value="<%= productData[i].productCode %>" />
+                                            <input type="submit" value="Add to Cart" class="btnAdd" /></form>
+                                    </td>
+
+                                </tr>
+                            </div>
+                            <% } %>
+
                         </thead>
                         <tbody id="instockData"></tbody>
                     </table>
 
-                    <!-- Content Row -->
-
                 </div>
             </div>
 
-            <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -245,18 +267,89 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
 
     </div>
 
-    <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/fontawesome/js/all.js"></script>
     <script src="/js/navbar.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: 'addItem',
+                type: 'POST',
+                dataType: 'json',
+                success: (data) => {
+                    $('#quantity-product').html(data[0].row)
+                    $('#piece-product').html(data[1].piece)
+                }
+
+            });
+            
+            $.ajax({
+                url: 'fetchDetails',
+                type: 'GET',
+                dataType: 'json',
+                success: (data) => {
+                    name = data[0].firstName + " " + data[0].lastName
+                    role = data[0].jobTitle
+                    $('#empName').html(name)
+                    $('#empRole').html(role)
+                }
+
+            });
+
+
+
+
+
+            /* $.post("addItem", {
+                 quantity : "10" , code : "S10_1949"
+             }, function (data) {
+                 console.log(data[0].name); 
+                 
+             }, "json");*/
+            $(".btnAdd").click(function () {
+
+                $.ajax({
+                    type: "POST",
+                    url: "addItem",
+                    data: $(this).parent().serialize(),
+                    success: function (data) {
+                        //  alert(JSON.parse(JSON.stringify(data.result[0].name + " "+data.result[0]. ))); 
+                        $('#quantity-product').html(data[0].row)
+                        $('#piece-product').html(data[1].piece)
+                    }
+                });
+                return false; // avoid to execute the actual form submission.
+
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+       
+            
+        
+    </script>
 
     <!-- Menu Toggle Script -->
     <script>
@@ -264,12 +357,11 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-
     </script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(() => {
-            $.ajax({ 
+            $.ajax({
                 url: 'instockFetch',
                 type: 'GET',
                 dataType: 'json',
@@ -279,11 +371,11 @@
                         text += '<tr>'
                         text += '<td>' + obj.productCode + '</td>'
                         text += '<td>' + obj.productName + '</td>'
-                        text += '<td>' + obj.productLine + '</td>'
                         text += '<td>' + obj.productScale + '</td>'
                         text += '<td>' + obj.productVendor + '</td>'
                         text += '<td>' + obj.quantityInStock + '</td>'
                         text += '<td>' + obj.buyPrice + '</td>'
+                        text += '<td>' +'<input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Add to Cart" class="btnAddAction" />'+'</td>'
                         text += '</tr>'
                     })
                     $('#instockData').html(text)
@@ -294,7 +386,9 @@
         $(document).ajaxError(() => {
             $('#demo').html('Error: unknown ajaxError!');
         });
-    </script>
+    </script> -->
+
+
 
 </body>
 

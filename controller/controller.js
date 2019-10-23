@@ -11,6 +11,7 @@ module.exports = {
     addUser(req, res) {
         empNum = parseInt(req.body.empNum)
         pswd = req.body.password
+        
         Database.query('SELECT employeeNumber FROM employees WHERE employeeNumber = ' + empNum, (err, data) => {
 
             
@@ -35,6 +36,7 @@ module.exports = {
     login(req, res) {
         empNum = parseInt(req.body.username)
         password = req.body.password
+        
         Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + empNum, (err, data) => {
             if(data.length > 0){
                 bcrypt.compare(password.toString(), data[0].pswd, function (err, compared) {
