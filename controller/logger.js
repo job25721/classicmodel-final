@@ -1,5 +1,3 @@
-const express = require('express')
-const app = express()
 const Database = require('../config/database')
 
 const bcrypt = require('bcrypt');
@@ -41,7 +39,7 @@ module.exports = {
                     if (compared) {
                         req.session.loggedin = true
                         req.session.user = empNum
-                        res.redirect('/home')
+                        res.redirect('/admin')
                     } else {
                         res.redirect('/login')
                     }

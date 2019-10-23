@@ -6,9 +6,6 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 const Database = require('./config/database')
-
-const Middleware = require('./middleware/loggerMiddleware')
-
 const sequelize = require('./config/database')
 
 // sequelize.authenticate().then(() => {
@@ -16,14 +13,13 @@ const sequelize = require('./config/database')
 // }).catch(err => {
 //     console.log('Unable to connect to the database', err);
 // })
-
 //connect to database
-
 Database.connect((err) => {
     if (err) {
         throw err;
     } else {
-        console.log("Connected to database!!");
+        console.log("-----------------------------------------");
+        console.log("Database connected Successful !");
         //session
         app.use(session({
             secret: 'secret',
@@ -40,25 +36,30 @@ Database.connect((err) => {
         //use engine ejs to render page
         app.set("view engine", "ejs")
 
-
-        //routes
-        require('./routes/dataRoute')(app) //dataServe
-        require('./routes/pages')(app) //pages routes
-        require('./routes/logger')(app) //logger
-
-
         //serve static css bootstrap
         app.use(express.static('style'))
         app.use(express.static('public'))
-
-
+        //routers
+        app.use('/',require('./routes/index')) //indexPageRouter
+        require('./routes/logger')(app) //logger
+        
+        //adminPageRouter include auth middleware inside
+        app.use('/admin',require('./routes/admin')) 
+        
+        
+       
 
 
         //listen
         const port = process.env.PORT || 3000
         app.listen(port, (err) => {
             if (err) throw err;
-            console.log("server started on PORT " + port);
+            else{
+                console.log("-----------------------------------------");
+                console.log("Server started on http://localhost:"+port);
+                console.log("-----------------------------------------");
+            }
+            
         })
     }
 })
