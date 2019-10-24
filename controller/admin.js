@@ -25,6 +25,9 @@ module.exports = {
     Employee(req, res) {
         res.render('pages/employee')
     },
+    editEmployee(req ,res){
+        res.render('pages/editEmployee')
+    },
     
     //dataFetch
     fetchDetails(req, res) {
@@ -40,6 +43,11 @@ module.exports = {
     },
     instockData(req, res) {
         Database.query('select `productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice` from `products`', (err, data) => {
+            res.json(data)
+        })
+    },
+    fetchEmployee(req,res){
+        Database.query('select * from employees',(err,data)=>{
             res.json(data)
         })
     }

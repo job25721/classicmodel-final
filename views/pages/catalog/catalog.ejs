@@ -94,51 +94,13 @@
                         <div class="common-filter">
                            <div class="head">Scale</div>
                            <form action="#">
-                              <ul>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="110"
-                                       name="scale"><label for="110">1:10</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="112"
-                                       name="scale"><label for="112">1:12</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="118"
-                                       name="scale"><label for="118">1:18</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="124"
-                                       name="scale"><label for="124">1:24</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="132"
-                                       name="scale"><label for="132">1:32</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="150"
-                                       name="scale"><label for="150">1:50</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="172"
-                                       name="scale"><label for="172">1:72</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="1700"
-                                       name="scale"><label for="1700">1:700</label>
-                                 </li>
-                              </ul>
+                              <ul id="scalefilter"><!-- ScaleAppendhere --></ul>
                            </form>
                         </div>
                         <div class="common-filter ">
                            <div class="head">Vendor</div>
                            <form action="#">
-                              <ul>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="men"
-                                       name="brand"><label for="men">Men</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="women"
-                                       name="brand"><label for="women">Women</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="accessories"
-                                       name="brand"><label for="accessories">Accessories</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear"
-                                       name="brand"><label for="footwear">Footwear</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="bayItem"
-                                       name="brand"><label for="bayItem">Bay item</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="electronics"
-                                       name="brand"><label for="electronics">Electronics</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="food"
-                                       name="brand"><label for="food">Food</label></li>
-                              </ul>
+                              <ul id="vendorfilter"><!--Vendor Appendhere--></ul>
                            </form>
                         </div>
                         <div class="mx-5 my-2"></div>
@@ -221,31 +183,36 @@
             type: 'GET',
             dataType: 'json',
             success: (data) => {
-               $("#scalefilter").append("<option selected='selected' value='All'>All</option>");
+               var i = 1
                $.each(data, function (index, obj) {
-                  $("#scalefilter").append("<option  value='" + obj.productScale + "'>" + obj
-                     .productScale + "</option>");
+                  $("#scalefilter").append('<li class="filter-list"><input class="pixel-radio" type="radio" name="scale" id="scale'+i+'" value="'+obj.productScale+'"><label>' + obj.productScale+ '</label></li>');
+                  i++;
                });
-               //$('#scalefilter').html( text);
             },
          });
-         $.ajax({
+         $.ajax({   
             url: '/catalog/vendorFilter',
             type: 'GET',
             dataType: 'json',
             success: (data) => {
-               $("#vendorfilter").append("<option  value='All' >All</option>");
                $.each(data, function (index, obj) {
-                  $("#vendorfilter").append("<option  value='" + obj.productVendor + "'>" + obj
-                     .productVendor + "</option>");
+                  $("#vendorfilter").append('<li class="filter-list"><input class="pixel-radio" type="radio" name="vendor"><label>'+ obj.productVendor +'</label></li>');
                });
-               //$('#vendorfilter').html( text);
             },
          });
       });
       $(document).ajaxError(() => {
          $('#demo').html('Error: unknown ajaxError!');
       });
+   </script>
+
+   <script>
+      $(document).ready(function(){
+         console.log($('#scale1').val());
+         
+         
+         
+      })
    </script>
 
 </body>

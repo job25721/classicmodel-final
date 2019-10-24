@@ -14,8 +14,7 @@ module.exports = {
     },
     Catalog(req, res) {
         var scale = req.query.scale;
-        var vendor = req.query.vendor;
-
+        var vendor = req.query.vendor; 
         if ((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All")) {
             Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)', function (err, result, fields) {
 

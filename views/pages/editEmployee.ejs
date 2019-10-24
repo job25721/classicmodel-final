@@ -218,40 +218,99 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Employee management</h1>
                     </div>
-
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Employeenumber</th>
-                                <th>FirstName</th>
-                                <th>LastName</th>
-                                <th>officeCode</th>
-                                <th>jobTitle</th>
-                                <th>Manage</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="employeeData"></tbody>
-                    </table>
-                    <div id="count">
-
+                    <div class="container">
+                        <div class="row m-y-2">
+                            <!-- edit form column -->
+                            <div class="col-lg-2 btn btn-primary">
+                                <h2 class="text-left h3 mb-0">Employee edit</h2>
+                            </div>
+                            <div class="col-lg-8 push-lg-4 personal-info">
+                                <form role="form">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">EmployeeNumber</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="xxxx" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="Bishop" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="lastName" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="email" value="example@gmail.com" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">JobTitle</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="JobTiltle" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">OfficeCode</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="" placeholder="x" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">extention</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control" type="text" value="" placeholder="extention" />
+                                        </div>
+                                        <label class="col-lg-2 col-form-label form-control-label">reportsTo</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control" type="text" value="" placeholder="reportsTo" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="password" value="11111122333" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                                        <div class="col-lg-9">
+                                            <a href="/admin/employee">
+                                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                            </a>
+                                            <input type="button" class="btn btn-primary" value="Save Changes" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    
+                    <hr>
                 </div>
             </div>
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Department of Computer Engineering, Chiang Mai University</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Department of Computer Engineering, Chiang Mai University</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
 
@@ -286,39 +345,6 @@
         })
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-             $.ajax({
-                url : '/admin/employee/fetchEmployeeData',
-                type : 'GET',
-                dataType : 'json',
-                success : (data) => {
-                    var append = ''
-                    let count = 1
-                    $.each(data, function(index,each){
-                        var ap = 
-                        append += '<tr>'
-                        append += '<td>' + each.employeeNumber + '</td>'
-                        append += '<td>' + each.firstName + '</td>'
-                        append += '<td>' + each.lastName + '</td>'
-                        append += '<td>' + each.officeCode + '</td>'
-                        append += '<td>' + each.jobTitle + '</td>'
-                        append += '<td><a href="employee/edit"><button class="btn btn-primary class="edit" value="ss"> Edit </button></a>'
-                        append += '<button class="btn btn-danger ml-3"> Delete </button></td>'
-                        append += '</tr>'
-                        count ++
-                       
-                    })
-                    // 
-                    if(count < 1)  {
-                        $('#count').append('<p class="btn btn-danger">Found :'+ count + '</p>')
-                    }else $('#count').append('<p class="btn btn-success">Found :'+ count + '</p>')     
-                    $('#employeeData').append(append)
-
-                }
-            })
-        })
-    </script>
 
 </body>
 
