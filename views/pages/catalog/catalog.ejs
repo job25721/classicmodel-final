@@ -10,13 +10,11 @@
 
    <title>Catalog</title>
 
-   <!-- Bootstrap core CSS -->
-   <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-   <!-- Custom styles for this template -->
    <link href="/css/simple-sidebar.css" rel="stylesheet">
+   <link href="/css/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/responsive.css">
+   <link href="/fontawesome/css/all.css" rel="stylesheet">
 
-   <link rel="stylesheet" href="/fontawesome/css/all.css">
 
 
 </head>
@@ -30,13 +28,10 @@
       <div id="content-wrapper" class="d-flex flex-column">
 
 
-         <div id="content">
-
-
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
+         <header class="header_area">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow fixed-top">
                <div class="container">
-                  <!-- Sidebar Toggle (Topbar) -->
+
                   <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none"
                      href="/catalog?scale=All&vendor=All">
                      <div class="sidebar-brand-icon rotate-n-15">
@@ -44,147 +39,156 @@
                      </div>
                      <div class="sidebar-brand-text">Classsic Model<sup>Shop</sup></div>
                   </a>
-                  <div class="align-item-center container-fluid justify-content-center">
-                     <center>
-                        <form
-                           class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                           <div class="input-group">
-                              <input type="text" class="form-control bg-light border-0 small"
-                                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                              <div class="input-group-append">
-                                 <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                 </button>
-                              </div>
-                           </div>
-                        </form>
-                     </center>
+
+
+                  <div>
+                     <a class="d-flex justify-content-center align-items-center" href="/login">
+                        <div class="d-flex align-items-start">
+                           <i class="fas fa-user"></i>
+                        </div>
+                     </a>
+
 
                   </div>
-                  <!-- Topbar Search -->
-
-
-                  <!-- Topbar Navbar -->
-                  <ul class="navbar-nav ml-auto">
-
-                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                     <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                           aria-labelledby="searchDropdown">
-                           <form class="form-inline mr-auto w-100 navbar-search">
-                              <div class="input-group">
-                                 <input type="text" class="form-control bg-light border-0 small"
-                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                       <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                 </div>
-                              </div>
-                           </form>
-                        </div>
-                     </li>
-                     <div class="topbar-divider d-none d-sm-block"></div>
-
-                     <div>
-                        <a class="sidebar-brand d-flex justify-content-center" href="/login">
-                           <div class="sidebar-brand-icon ">
-                              <i class="fas fa-sign-in-alt"></i>
-                           </div>
-                           <div class="sidebar-brand-text">Sign in</div>
-                     </div>
-                     <li class="nav-item dropdown no-arrow accordion" id="accordionSidebar">
-
-                        </a>
-                     </li>
-
-                  </ul>
-               </div>
             </nav>
+         </header>
+         <section class="blog-banner-area h-100" id="category">
+            <div class="container-fluid m-0 p-0">
+               <div id="carouselExampleIndicators" class="carousel slide" style="width: 100%;" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner" role="listbox">
+                     <div class="carousel-item active">
+                        <img class="d-block img-fluid" src="/img/test01.jpg" style="width: 100%;" alt="First slide">
+                     </div>
+                     <div class="carousel-item">
+                        <img class="d-block img-fluid" src="/img/test02.jpg" style="width: 100%;" alt="Second slide">
+                     </div>
+                     <div class="carousel-item">
+                        <img class="d-block img-fluid" src="/img/test03.jpg" style="width: 100%;" alt="Third slide">
+                     </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                  </a>
+               </div>
+            </div>
+         </section>
 
+         <section class="section-margin--small mb-5">
+            <div class="container-cat">
 
-            <div class="container mt-5">
 
                <div class="row">
 
-                  <div class="col-lg-3 mt-5">
-                     <div class="card border-bottom-primary">
-                        <div class="card-body" style="padding-bottom: 0px ;">
-                           <form action="/catalog" method="GET" name=Form1>
-                              Scale
-                              <select class='form-control mt-2 mb-3' name="scale" id="scalefilter">
-                              </select>
-                              Vendor
-                              <select class='form-control mt-2 mb-3' name="vendor" id="vendorfilter">
-                              </select>
-
-                              <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
-                              <input class="btn btn-success" type="submit" value="Clear" onclick="">
-                              <hr>
-
+                  <div class="col-xl-3 col-lg-4 col-md-5">
+                     <div class="sidebar-filter mt-0">
+                        <div class="top-filter-head sfmono">Product Filters</div>
+                        <div class="common-filter">
+                           <div class="head">Scale</div>
+                           <form action="#">
+                              <ul>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="110"
+                                       name="scale"><label for="110">1:10</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="112"
+                                       name="scale"><label for="112">1:12</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="118"
+                                       name="scale"><label for="118">1:18</label>
+                                 </li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="124"
+                                       name="scale"><label for="124">1:24</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="132"
+                                       name="scale"><label for="132">1:32</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="150"
+                                       name="scale"><label for="150">1:50</label>
+                                 </li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="172"
+                                       name="scale"><label for="172">1:72</label>
+                                 </li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="1700"
+                                       name="scale"><label for="1700">1:700</label>
+                                 </li>
+                              </ul>
                            </form>
                         </div>
-                        <div class="mx-3 my-2">
-                           <p class="text-lg">Filter</p>
-                           <h5> Vendor: <%= Ven  %></h5>
-                           <h5>Scale : <%= Sc  %> </h5>
-                           <h5>Found <%= rowNum  %> products </h5>
+                        <div class="common-filter ">
+                           <div class="head">Vendor</div>
+                           <form action="#">
+                              <ul>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="men"
+                                       name="brand"><label for="men">Men</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="women"
+                                       name="brand"><label for="women">Women</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="accessories"
+                                       name="brand"><label for="accessories">Accessories</label>
+                                 </li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear"
+                                       name="brand"><label for="footwear">Footwear</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="bayItem"
+                                       name="brand"><label for="bayItem">Bay item</label></li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="electronics"
+                                       name="brand"><label for="electronics">Electronics</label>
+                                 </li>
+                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="food"
+                                       name="brand"><label for="food">Food</label></li>
+                              </ul>
+                           </form>
                         </div>
-
+                        <div class="mx-5 my-2"></div>
+                        <p>Vendor: <%= Ven  %></p>
+                        <p>Scale : <%= Sc  %> </p>
+                        <p>Found <%= rowNum  %> products</p>
                      </div>
 
                   </div>
 
 
-                  <div class="col-lg-9 mt-5">
+                  <div class="col-xl-9 col-lg-8 col-md-7">
+                     <div class="filter-bar d-flex flex-wrap align-items-center">
+                        <div class="sorting">
+                           <select>
+                              <option value="1">Default sorting</option>
+                              <option value="1">Default sorting</option>
+                              <option value="1">Default sorting</option>
+                           </select>
+                        </div>
+                        <div class="sorting mr-auto">
 
-                     <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                           <div class="carousel-item active">
-                              <img class="d-block img-fluid" src="/img/ad01.jpg" alt="First slide">
-                           </div>
-                           <div class="carousel-item">
-                              <img class="d-block img-fluid" src="/img/ad02.jpg" alt="Second slide">
-                           </div>
-                           <div class="carousel-item">
-                              <img class="d-block img-fluid" src="/img/ad03.jpg" alt="Third slide">
+                        </div>
+                        <div>
+                           <div class="input-group filter-bar-search">
+                              <input type="text" placeholder="Search">
+                              <div class="input-group-append">
+                                 <button type="button"><i class="fas fa-search fa-sm"
+                                       style="color: #999999;"></i></button>
+                              </div>
                            </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                           data-slide="prev">
-                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                           data-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="sr-only">Next</span>
-                        </a>
                      </div>
 
                      <div class="row">
                         <% for(var i=0; i < result.length; i++) { %>
-                        <div class="col-lg-4 col-md-6 mb-4" id='<%= result[i].productName %>'>
-                           <div class="card h-100 border-bottom-primary">
-                              <a href="#"><img class="card-img-top" src="/img/<%=result[i].imgSrc%>" alt=""></a>
+                        <div class="col-md-6 col-lg-4" id='<%= result[i].productName %>'>
+                           <div class="text-center card-product">
+                              <div class="card-product__img">
+                                 <a data-toggle="modal" data-target="#productModal" title="Product detail"
+                                    class="quick-view modal-view detail-link" href="#"><img class="card-img"
+                                       src="/img/<%=result[i].imgSrc%>" alt=""></a>
+                              </div>
                               <div class="card-body">
-                                 <h4 class="card-title">
-                                    <a href="#"><%= result[i].productName %></a>
-                                 </h4>
-                                 <h5>$<%= result[i].buyPrice %> </h5>
-                                 <h5>Scale <%= result[i].productScale %></h5>
-                                 <h5>Seller: <%= result[i].productVendor %></h5>
-                                 <p class="card-text"><%= result[i].productDescription %></p>
+                                 <p>Scale <%= result[i].productScale %></p>
+                                 <h4 class="card-product__title sfmono"><%= result[i].productName %></h4>
+                                 <p class="price">$<%= result[i].buyPrice %> </p>
+
+                                 <p>Vendor: <%= result[i].productVendor %></p>
                               </div>
                            </div>
                         </div>
@@ -193,30 +197,96 @@
                   </div>
                </div>
             </div>
-         </div>
+         </section>
 
       </div>
    </div>
 
+   <div id="quickview-wrapper">
+      <!-- Modal -->
+      <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+         <div class="modal-dialog modal__container" role="document">
+            <div class="modal-content">
+               <div class="modal-header modal__header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+               </div>
+               <div class="modal-body">
+                  <div class="modal-product">
+                     <!-- Start product images -->
+                     <div class="product-images">
+                        <div class="main-image images">
+                           <img alt="big images" src="/img/test10.jpg"
+                              style="max-width: 100%; transition: all 0.3s ease-out 0s;margin-bottom: 0;">
+                        </div>
+                     </div>
+                     <!-- end product images -->
+                     <div class="product-info">
+                        <h1 class="sfmono">productName</h1>
+                        <div class="price-box-3">
+                           <div class="s-price-box">
+                              <span class="new-price">$99.99</span>
+                              <span class="old-price">$11.11</span>
+                           </div>
+                        </div>
+                        <div class="quick-desc">
+                           Description
+                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe dignissimos atque ducimus
+                           magni ratione quas esse voluptatibus reprehenderit veniam corporis maiores natus officiis
+                           pariatur alias doloribus porro, voluptates distinctio autem.
+                        </div>
+                        <div class="product-detail">
+                           <h2>productCode</h2>&nbsp; <h3>S99_9999</h3>
+                        </div>
+                        <div class="product-detail">
+                           <h2>productScale</h2>&nbsp; <h3>1:9999999</h3>
+                        </div>
+                        <div class="product-detail">
+                           <h2>Vendor</h2>&nbsp; <h3>Mr.Parinya Seetawan</h3>
+                        </div>
+                        <div class="product-detail">
+                           <h2>Quantity</h2>&nbsp; <h3>9999</h3>
+                        </div>
+                        <div class="social-sharing">
+                           <div class="widget widget_socialsharing_widget">
+                              <h3 class="widget-title-modal sfmono">Share this product</h3>
+                              <ul class="social-icons">
+                                 <li><a target="_blank" title="facebook" href="#" class="social-icon"><i
+                                          class="fab fa-facebook-f"></i></a>
+                                 </li>
+                                 <li><a target="_blank" title="twitter" href="#" class="social-icon"><i
+                                          class="fab fa-twitter"></i></a></li>
+                                 <li><a target="_blank" title="pinterest" href="#" class="social-icon"><i
+                                          class="fab fa-pinterest-p"></i></a>
+                                 </li>
+                                 <li><a target="_blank" title="tumblr" href="#" class="social-icon"><i
+                                          class="fab fa-tumblr"></i></a></li>
+                                 <li><a target="_blank" title="instagram" href="#" class="social-icon"><i
+                                          class="fab fa-instagram"></i></i></a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
-   <!-- Bootstrap core JavaScript -->
    <script src="/jquery/jquery.min.js"></script>
    <script src="/js/bootstrap.bundle.min.js"></script>
    <script src="/fontawesome/js/all.js"></script>
-   <script src="/js/navbar.js"></script>
+   <script src="/js/main.js"></script>
+   <script src="/jquery/jquery.nice-select.min.js"></script>
+   <script src="/js/skrollr.min.js"></script>
 
-   <!-- Menu Toggle Script -->
    <script>
       $("#menu-toggle").click(function (e) {
          e.preventDefault();
          $("#wrapper").toggleClass("toggled");
       });
    </script>
-
-
-
-
-
 
    <script type="text/javascript">
       $(document).ready(() => {
@@ -251,6 +321,22 @@
          $('#demo').html('Error: unknown ajaxError!');
       });
    </script>
+
+   <!-- <div class="social-sharing">
+      <div class="widget widget_socialsharing_widget">
+         <h3 class="widget-title-modal sfmono">Share this product</h3>
+         <ul class="social-icons">
+            <li><a target="_blank" title="facebook" href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li><a target="_blank" title="twitter" href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+            <li><a target="_blank" title="pinterest" href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+            </li>
+            <li><a target="_blank" title="tumblr" href="#" class="social-icon"><i class="fab fa-tumblr"></i></a></li>
+            <li><a target="_blank" title="instagram" href="#" class="social-icon"><i
+                     class="fab fa-instagram"></i></i></a></li>
+         </ul>
+      </div>
+   </div> -->
 
 </body>
 
