@@ -28,7 +28,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-helicopter"></i>
                 </div>
@@ -40,7 +40,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/home">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-home "></i>
                     <span>Home</span></a>
             </li>
@@ -63,23 +63,23 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Ordering:</h6>
-                        <a class="collapse-item" href="/instock">In stock</a>
-                        <a class="collapse-item" href="/preorder">Pre-order</a>
+                        <a class="collapse-item" href="/admin/instock">In stock</a>
+                        <a class="collapse-item" href="/admin/preorder">Pre-order</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/status">
+                <a class="nav-link" href="/admin/status">
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Order Status</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/discount">
+                <a class="nav-link" href="/admin/discount">
                     <i class="fas fa-fw fa-tag"></i>
                     <span>Discount</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/preordermanage">
+                <a class="nav-link" href="/admin/preordermanage">
                     <i class="fas fa-fw fa-calendar-alt"></i>
                     <span>Pre-order management</span></a>
             </li>
@@ -93,7 +93,7 @@
             </div>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/customer">
+                <a class="nav-link" href="/admin/customer">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers management</span></a>
             </li>
@@ -105,7 +105,7 @@
             </div>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="employee">
+                <a class="nav-link" href="/admin/employee">
                     <i class="fas fa-fw fa-id-card"></i>
                     <span>Employees management</span></a>
             </li>
@@ -178,9 +178,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle"
-                                    src="/img/profile.jpg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome back </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName"></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empRole"></span>
+                                <img class="img-profile rounded-circle" src="/img/pm.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -219,8 +220,8 @@
                     </div>
 
                     <!-- Content Row -->
-                    
-                </div>  
+
+                </div>
             </div>
 
             <!-- Footer -->
@@ -250,10 +251,24 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-
-
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: '/admin/fetchDetails',
+                type: 'GET',
+                dataType: 'json',
+                success: (data) => {
+                    name = data[0].firstName + " " + data[0].lastName
+                    role = data[0].jobTitle
+                    $('#empName').html(name)
+                    $('#empRole').html(role)
+                }
+
+            })
+        })
+    </script>
 
 </body>
 

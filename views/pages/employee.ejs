@@ -17,11 +17,7 @@
     <link href="/css/simple-sidebar.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/fontawesome/css/all.css">
-    <style>
-        .Position{
-            text-align: center;
-        }
-    </style>
+
 </head>
 
 <body class="sfmono">
@@ -32,7 +28,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-helicopter"></i>
                 </div>
@@ -44,7 +40,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/home">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-home "></i>
                     <span>Home</span></a>
             </li>
@@ -67,23 +63,23 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Ordering:</h6>
-                        <a class="collapse-item" href="/instock">In stock</a>
-                        <a class="collapse-item" href="/preorder">Pre-order</a>
+                        <a class="collapse-item" href="/admin/instock">In stock</a>
+                        <a class="collapse-item" href="/admin/preorder">Pre-order</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/status">
+                <a class="nav-link" href="/admin/status">
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Order Status</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/discount">
+                <a class="nav-link" href="/admin/discount">
                     <i class="fas fa-fw fa-tag"></i>
                     <span>Discount</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/preordermanage">
+                <a class="nav-link" href="/admin/preordermanage">
                     <i class="fas fa-fw fa-calendar-alt"></i>
                     <span>Pre-order management</span></a>
             </li>
@@ -97,7 +93,7 @@
             </div>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/customer">
+                <a class="nav-link" href="/admin/customer">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers management</span></a>
             </li>
@@ -109,7 +105,7 @@
             </div>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="employee">
+                <a class="nav-link" href="/admin/employee">
                     <i class="fas fa-fw fa-id-card"></i>
                     <span>Employees management</span></a>
             </li>
@@ -182,9 +178,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle"
-                                    src="/img/profile.jpg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome back </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName"></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empRole"></span>
+                                <img class="img-profile rounded-circle" src="/img/pm.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -219,31 +216,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 ">Employee List</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Product in stock</h1>
                     </div>
+
                     <!-- Content Row -->
-                    <div class="col-lg-9 mt-3">
-                        <div class="row">
-                               <div class="col-lg-4 col-md-6 mb-4">
-                                   <div class="card h-100 border-buttom-primary">
-                                        <img class="card-img-top" src="/img/profile.jpg" alt="">  
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            Name of employee
-                                        </h4>
-                                        <div id="buttomEmployee" class="Position"></div>
-                                            <a href="/edit_customer"><button class="btn btn-primary m-1 Position">Edit</button></a></a>
-                                            <a href="#"><button class="btn btn-danger m-1 Position">Delete</button>
-                                        </div>
-                                       </div>
-                                   </div > 
 
-                                   <!--Buttom edit/delete-->
-                                   
-                        </div>
-                    </div>
-
-                </div>  
+                </div>
             </div>
 
             <!-- Footer -->
@@ -275,26 +253,23 @@
         });
     </script>
 
-    <!--Buttom Edit/Delete-->
     <script type="text/javascript">
-        $(document).ready(() => {
-
+        $(document).ready(function () {
             $.ajax({
-                url :'',
-                type : 'GET',
-                dataType : 'json',
-                success : function(data){
-                    var text ='';
-                    $.each(data, function(index,obj){
-                        text +=  '<a href="/edit_customer"><button class="btn btn-primary m-1">Edit</button></a></a>'
-                        text += '<a href="#"><button class="btn btn-danger m-1">Delete</button>'
-                    })
-                    $('').html(text)
+                url: '/admin/fetchDetails',
+                type: 'GET',
+                dataType: 'json',
+                success: (data) => {
+                    name = data[0].firstName + " " + data[0].lastName
+                    role = data[0].jobTitle
+                    $('#empName').html(name)
+                    $('#empRole').html(role)
                 }
+
             })
-        
-        });
+        })
     </script>
+
 
 </body>
 

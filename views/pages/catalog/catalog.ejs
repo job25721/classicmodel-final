@@ -17,7 +17,7 @@
    <link href="/css/simple-sidebar.css" rel="stylesheet">
 
    <link rel="stylesheet" href="/fontawesome/css/all.css">
-   
+
 
 </head>
 
@@ -44,19 +44,25 @@
                      </div>
                      <div class="sidebar-brand-text">Classsic Model<sup>Shop</sup></div>
                   </a>
+                  <div class="align-item-center container-fluid justify-content-center">
+                     <center>
+                        <form
+                           class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                           <div class="input-group">
+                              <input type="text" class="form-control bg-light border-0 small"
+                                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                 <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                 </button>
+                              </div>
+                           </div>
+                        </form>
+                     </center>
 
+                  </div>
                   <!-- Topbar Search -->
-                  <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                           aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                           <button class="btn btn-primary" type="button">
-                              <i class="fas fa-search fa-sm"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </form>
+
 
                   <!-- Topbar Navbar -->
                   <ul class="navbar-nav ml-auto">
@@ -85,24 +91,15 @@
                      </li>
                      <div class="topbar-divider d-none d-sm-block"></div>
 
-                     <ul class="nav-item mt-2" style="list-style-type: none;">
-                        <li>
-                           <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName"></span>
-                        </li>
-                        <li>
-                           <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empRole"></span>
-                        </li>
-                     </ul>
-
-
-
-                     <li class="nav-item dropdown no-arrow">
-                        <a class="sidebar-brand  align-items-center justify-content-between text-decoration-none"
-                           href="/login">
+                     <div>
+                        <a class="sidebar-brand d-flex justify-content-center" href="/login">
                            <div class="sidebar-brand-icon ">
                               <i class="fas fa-sign-in-alt"></i>
                            </div>
                            <div class="sidebar-brand-text">Sign in</div>
+                     </div>
+                     <li class="nav-item dropdown no-arrow accordion" id="accordionSidebar">
+
                         </a>
                      </li>
 
@@ -115,27 +112,36 @@
 
                <div class="row">
 
-                  <div class="col-lg-3 mt-3" style="padding-top: 121px;">
-                     <form action="/catalog" method="GET" name=Form1>
-                        Scale <br>
-                        <select class='form-control' name="scale" id="scalefilter">
-                        </select>
-                        <br>Vendor <br>
-                        <select class='form-control w-75 h-50' name="vendor" id="vendorfilter">
-                        </select>
-                        <br>
-                        <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
-                        <input class="btn btn-success" type="submit" value="Clear" onclick="">
-                        <hr>
-                        <p class="text-lg">Filter</p>
-                        <h5> Vendor: <%= Ven  %></h5>
-                        <h5>Scale : <%= Sc  %> </h5>
-                        <h5>Found <%= rowNum  %> products </h5>
-                     </form>
-               </div>
+                  <div class="col-lg-3 mt-5">
+                     <div class="card border-bottom-primary">
+                        <div class="card-body" style="padding-bottom: 0px ;">
+                           <form action="/catalog" method="GET" name=Form1>
+                              Scale
+                              <select class='form-control mt-2 mb-3' name="scale" id="scalefilter">
+                              </select>
+                              Vendor
+                              <select class='form-control mt-2 mb-3' name="vendor" id="vendorfilter">
+                              </select>
+
+                              <input class="btn btn-primary" type="submit" value="Search" onclick="" id="submitfilter">
+                              <input class="btn btn-success" type="submit" value="Clear" onclick="">
+                              <hr>
+
+                           </form>
+                        </div>
+                        <div class="mx-3 my-2">
+                           <p class="text-lg">Filter</p>
+                           <h5> Vendor: <%= Ven  %></h5>
+                           <h5>Scale : <%= Sc  %> </h5>
+                           <h5>Found <%= rowNum  %> products </h5>
+                        </div>
+
+                     </div>
+
+                  </div>
 
 
-                  <div class="col-lg-9 mt-3">
+                  <div class="col-lg-9 mt-5">
 
                      <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -145,13 +151,13 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                            <div class="carousel-item active">
-                              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+                              <img class="d-block img-fluid" src="/img/ad01.jpg" alt="First slide">
                            </div>
                            <div class="carousel-item">
-                              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+                              <img class="d-block img-fluid" src="/img/ad02.jpg" alt="Second slide">
                            </div>
                            <div class="carousel-item">
-                              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+                              <img class="d-block img-fluid" src="/img/ad03.jpg" alt="Third slide">
                            </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -213,7 +219,6 @@
 
 
    <script type="text/javascript">
-      
       $(document).ready(() => {
          $.ajax({
             url: '/catalog/scaleFilter',
@@ -246,39 +251,6 @@
          $('#demo').html('Error: unknown ajaxError!');
       });
    </script>
-
-   <script type="text/javascript">
-      $(document).ready(() => {
-         $.ajax({
-            url: 'scaleFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               $("#scalefilter").append("<option value='All'>All</option>");
-               $.each(data, function (index, obj) {
-                  $("#scalefilter").append("<option value='" + obj.productScale + "'>" + obj.productScale + "</option>");
-               });
-               //$('#scalefilter').html( text);
-            },
-         });
-         $.ajax({
-            url: 'vendorFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               $("#vendorfilter").append("<option value='All'>All</option>");
-               $.each(data, function (index, obj) {
-                  $("#vendorfilter").append("<option  value='" + obj.productVendor + "'>" + obj.productVendor + "</option>");
-               });
-               //$('#vendorfilter').html( text);
-            },
-         });
-      });
-      $(document).ajaxError(() => {
-         $('#demo').html('Error: unknown ajaxError!');
-      });
-   </script>
-
 
 </body>
 
