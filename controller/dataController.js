@@ -51,7 +51,10 @@ module.exports = {
             res.json(data)
         })
 
+    },
+
+    //Employee Show list 
+    Employee(req,res){
+         
     }
-
-
 }

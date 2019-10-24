@@ -43,8 +43,12 @@
 				alert(e);
 			}
 		}
-
-	</SCRIPT>
+    </SCRIPT>
+   <style>
+       .Position{
+        text-align: center;
+       }
+   </style>
 
 </head>
 
@@ -250,7 +254,7 @@
 
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th>CustomerID</th>
                                 <th>Name</th>
                                 <th>Address</th>
@@ -309,7 +313,8 @@
                            text += '<td>' + obj.customerNumber+ '</td>'
                            text += '<td>' + obj.customerName+ '</td>'
                            text += '<td>' + obj.addressLine1+ '</td>'
-                           text += '<td><INPUT type="button" value="Delete" onclick="" /> <INPUT type="button" value="Edit" onclick="" /></td>'
+                           text += '<td><a href="/edit_customer"><button class="btn btn-primary m-1">Edit</button></a></a>'
+                           text += '<a href="#"><button class="btn btn-danger m-1">Delete</button></td>' 
                            text += '</tr>'
                        })
                     $('#customerData').html(text)

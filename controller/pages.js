@@ -108,7 +108,18 @@ module.exports = {
         })
 
     },
+
     authenFailed(req, res) {
         res.render('pages/redirectPage')
-    }
+    },
+
+    editCustomer(req, res) {
+        if (req.session.loggedin === true) {
+            res.render('pages/edit_customer')
+        } else {
+            res.redirect('/authenFailed') //redirect คือ เรียก /authenFailed
+        }
+    },
+    
+
 }
