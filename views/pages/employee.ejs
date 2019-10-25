@@ -12,8 +12,9 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/fontawesome/css/all.css">
+   <link href="/css/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/responsive.css">
+   <link href="/fontawesome/css/all.css" rel="stylesheet">
 
 </head>
 
@@ -252,6 +253,77 @@
 
     </div>
 
+    <div id="quickview-wrapper">
+        <!-- Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+           <div class="modal-dialog modal__container" role="document">
+              <div class="modal-content">
+                 <div class="modal-header modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                 </div>
+                 <div class="modal-body">
+                    <div class="modal-product">
+                       <!-- Start product images -->
+                       <div class="product-images">
+                          <div class="main-image images">
+                             <img alt="big images" src="/img/test10.jpg"
+                                style="max-width: 100%; transition: all 0.3s ease-out 0s;margin-bottom: 0;">
+                          </div>
+                       </div>
+                       <!-- end product images -->
+                       <div class="product-info">
+                          <h1 class="sfmono">productName</h1>
+                          <div class="price-box-3">
+                             <div class="s-price-box">
+                                <span class="new-price">$99.99</span>
+                                <span class="old-price">$11.11</span>
+                             </div>
+                          </div>
+                          <div class="quick-desc">
+                             Description
+                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe dignissimos atque ducimus
+                             magni ratione quas esse voluptatibus reprehenderit veniam corporis maiores natus officiis
+                             pariatur alias doloribus porro, voluptates distinctio autem.
+                          </div>
+                          <div class="product-detail">
+                             <h2>productCode</h2>&nbsp; <h3>S99_9999</h3>
+                          </div>
+                          <div class="product-detail">
+                             <h2>productScale</h2>&nbsp; <h3>1:9999999</h3>
+                          </div>
+                          <div class="product-detail">
+                             <h2>Vendor</h2>&nbsp; <h3>Mr.Parinya Seetawan</h3>
+                          </div>
+                          <div class="product-detail">
+                             <h2>Quantity</h2>&nbsp; <h3>9999</h3>
+                          </div>
+                          <div class="social-sharing">
+                             <div class="widget widget_socialsharing_widget">
+                                <h3 class="widget-title-modal sfmono">Share this product</h3>
+                                <ul class="social-icons">
+                                   <li><a target="_blank" title="facebook" href="#" class="social-icon"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                   </li>
+                                   <li><a target="_blank" title="twitter" href="#" class="social-icon"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                   <li><a target="_blank" title="pinterest" href="#" class="social-icon"><i
+                                            class="fab fa-pinterest-p"></i></a>
+                                   </li>
+                                   <li><a target="_blank" title="tumblr" href="#" class="social-icon"><i
+                                            class="fab fa-tumblr"></i></a></li>
+                                   <li><a target="_blank" title="instagram" href="#" class="social-icon"><i
+                                            class="fab fa-instagram"></i></i></a></li>
+                                </ul>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
     
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.min.js"></script>
@@ -301,9 +373,9 @@
                         append += '<td>' + each.lastName + '</td>'
                         append += '<td>' + each.officeCode + '</td>'
                         append += '<td>' + each.jobTitle + '</td>'
-                        append += '<td>'
-                        append += '<form action = "/admin/employee/edit" method="POST">'
-                        append += '<button type="submit" class="btn btn-primary" id="edit" name="emp" value="'+each.employeeNumber+'"> Edit </button>'
+                        append += '<td>' 
+                        append += '<form action = "#" ">'
+                        append += '<button type="submit" class="btn btn-primary quick-view modal-view detail-link" data-toggle="modal" data-target="#productModal" id="edit" name="emp" value="'+each.employeeNumber+'"> Edit </button>'
                         append += '</form>'
                         append += '</td>'
                         append += '</tr>'
