@@ -225,53 +225,59 @@
                                 <h2 class="text-left h3 mb-0">Employee edit</h2>
                             </div>
                             <div class="col-lg-8 push-lg-4 personal-info">
-                                <form role="form">
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">EmployeeNumber</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="xxxx" />
+                                <form role="form" >
+                                    <fieldset disabled>
+                                        <div class="form-group row">
+                                            <label for="disabledTextInput"
+                                                class="col-lg-3 col-form-label form-control-label">EmployeeNumber</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" id="disabledTextInput" type="text"
+                                                    value="<%= res[0].employeeNumber%>" />
+                                            </div>
                                         </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="Bishop" />
+                                            <input class="form-control" type="text" value="<%= res[0].firstName%>" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="lastName" />
+                                            <input class="form-control" type="text" value="<%= res[0].lastName%>" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="email" value="example@gmail.com" />
+                                            <input class="form-control" type="email" value="<%= res[0].email%>" />
                                         </div>
                                     </div>
+                                    </fieldset>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">JobTitle</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="JobTiltle" />
+                                            <input class="form-control" type="text" value="<%= res[0].jobTitle%>" />
                                         </div>
                                     </div>
+                                    <fieldset disabled="disabled">
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">OfficeCode</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="" placeholder="x" />
+                                            <input class="form-control" type="text" value="<%= res[0].officeCode%>" placeholder="x" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">extention</label>
                                         <div class="col-lg-3">
-                                            <input class="form-control" type="text" value="" placeholder="extention" />
+                                            <input class="form-control" type="text" value="<%= res[0].extension%>" placeholder="extention" />
                                         </div>
                                         <label class="col-lg-2 col-form-label form-control-label">reportsTo</label>
                                         <div class="col-lg-3">
-                                            <input class="form-control" type="text" value="" placeholder="reportsTo" />
+                                            <input class="form-control" type="text" value="<%= res[0].reportsTo%>" placeholder="reportsTo" />
                                         </div>
                                     </div>
+                                </fieldset>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                         <div class="col-lg-9">
@@ -281,7 +287,7 @@
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label"></label>
                                         <div class="col-lg-9">
-                                            <a href="/admin/employee">
+                                            <a href="/admin/employee/clearSESSION">
                                                 <button type="button" class="btn btn-secondary">Cancel</button>
                                             </a>
                                             <input type="button" class="btn btn-primary" value="Save Changes" />
@@ -344,6 +350,8 @@
             })
         })
     </script>
+
+    
 
 
 </body>

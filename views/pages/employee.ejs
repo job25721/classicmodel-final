@@ -10,9 +10,6 @@
 
     <title>Employee</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
 
@@ -255,6 +252,7 @@
 
     </div>
 
+    
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
@@ -303,8 +301,11 @@
                         append += '<td>' + each.lastName + '</td>'
                         append += '<td>' + each.officeCode + '</td>'
                         append += '<td>' + each.jobTitle + '</td>'
-                        append += '<td><a href="employee/edit"><button class="btn btn-primary class="edit" value="ss"> Edit </button></a>'
-                        append += '<button class="btn btn-danger ml-3"> Delete </button></td>'
+                        append += '<td>'
+                        append += '<form action = "/admin/employee/edit" method="POST">'
+                        append += '<button type="submit" class="btn btn-primary" id="edit" name="emp" value="'+each.employeeNumber+'"> Edit </button>'
+                        append += '</form>'
+                        append += '</td>'
                         append += '</tr>'
                         count ++
                        
@@ -317,6 +318,11 @@
 
                 }
             })
+        })
+    </script>
+    <script>
+        $(document).ready(function(){
+           
         })
     </script>
 

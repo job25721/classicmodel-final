@@ -8,5 +8,7 @@ router.get('/edit',admin.editEmployee)
 
 
 router.get('/fetchEmployeeData',admin.fetchEmployee)
+router.post('/edit',admin.editEmployee)
+router.get('/clearSESSION',admin.clearSESSION)
 
 module.exports = router;
