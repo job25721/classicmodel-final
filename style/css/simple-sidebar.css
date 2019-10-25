@@ -6049,10 +6049,9 @@ a.close.disabled {
 }
 
 .modal-dialog {
-  position: relative;
-  width: auto;
-  margin: 0.5rem;
-  pointer-events: none;
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
 
 .modal.fade .modal-dialog {
@@ -6198,6 +6197,22 @@ a.close.disabled {
   overflow: scroll;
 }
 
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px;
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  .modal-lg,
+  .modal-xl {
+    max-width: 800px;
+  }
+}
+
+
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 500px;
@@ -6225,19 +6240,6 @@ a.close.disabled {
   }
 }
 
-@media (min-width: 992px) {
-
-  .modal-lg,
-  .modal-xl {
-    max-width: 800px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .modal-xl {
-    max-width: 1140px;
-  }
-}
 
 .tooltip {
   position: absolute;
@@ -12813,8 +12815,310 @@ body.sidebar-toggled footer.sticky-footer {
   }
 }
 
-.card-product__img:hover{
+.card-product__img:hover {
   filter: gray;
   -webkit-filter: grayscale(1);
-  -webkit-transition: all 0.8s ease-in-out;  
+  -webkit-transition: all 0.8s ease-in-out;
+}
+
+.product-images {
+  min-width: 50%;
+  padding-right: 50px;
+}
+
+.product__big__images .portfolio-full-image {
+  border: 1px solid #ddd;
+}
+
+.product__small__images {
+  min-width: 20%;
+  padding-right: 10px;
+}
+
+.product__small__images {
+  margin-top: -10px;
+}
+
+.modal {
+  text-align: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 300px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.price {
+  color: #f33e3e;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.s-price-box span.new-price {
+  color: #ff4136;
+  font-size: 23px;
+  margin-right: 5px;
+}
+
+.s-price-box span.old-price {
+  color: #999;
+  font-size: 15px;
+  text-decoration: line-through;
+}
+
+.product-info {
+  padding-left: 50px;
+  width: 50%;
+}
+
+.product-info h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+#quickview-wrapper {
+  position: relative;
+  z-index: 9956748;
+}
+
+.modal-dialog.modal__container {
+  max-width: 1170px;
+}
+
+.modal-product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+}
+
+.product-images {
+  min-width: 50%;
+  padding-right: 50px;
+}
+
+.product-info h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.rating__and__review {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-right: 13px;
+}
+
+.rating li span {
+  color: #ff4136;
+}
+
+.rating li+li {
+  margin-left: 3px;
+}
+
+.review a {
+  color: #999;
+}
+
+.s-price-box span.new-price {
+  color: #ff4136;
+  font-size: 23px;
+  margin-right: 5px;
+}
+
+.s-price-box span.old-price {
+  color: #999;
+  font-size: 15px;
+  text-decoration: line-through;
+}
+
+.product-info {
+  padding-left: 50px;
+  width: 50%;
+}
+
+.quick-desc {
+  color: #999;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  width: 83%;
+}
+
+.product-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.color__list {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 30px;
+}
+
+.color__list li+li {
+  margin-left: 15px;
+}
+
+.color__list li a {
+  background: #f10 none repeat scroll 0 0;
+  border-radius: 100%;
+  display: block;
+  height: 30px;
+  line-height: 31px;
+  text-align: center;
+  width: 30px;
+}
+
+.select__size {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.color__list li.gold a {
+  background: #cc9900 none repeat scroll 0 0;
+}
+
+.color__list li.orange a {
+  background: #cc6600 none repeat scroll 0 0;
+}
+
+.product-detail ul.color__list li a {
+  text-indent: 999px;
+}
+
+.product-detail h2 {
+  font-family: SFMono;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.product-detail h3 {
+  font-family: SFMono;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: #999;
+}
+
+.select__size h2 {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.select__size {
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.select__size ul.color__list li a {
+  background: #f1f1f1 none repeat scroll 0 0;
+  color: #999;
+}
+
+.widget.widget_socialsharing_widget {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.social-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 30px;
+}
+
+h3.widget-title-modal {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.social-icons li a {
+  border-radius: 100%;
+  color: #999;
+  display: block;
+  line-height: 30px;
+  text-align: center;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.social-icons li+li {
+  margin-left: 30px;
+}
+
+.social-icons li a i {
+  font-size: 23px;
+}
+
+.social-icons li a:hover {
+  color: #ff4136;
+}
+
+.addtocart-btn {
+  margin-top: 66px;
+  text-align: left;
+}
+
+.addtocart-btn a {
+  background: #333 none repeat scroll 0 0;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 87px;
+  text-transform: capitalize;
+  -webkit-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+.addtocart-btn a:hover {
+  background: #ff4136 none repeat scroll 0 0;
+  color: #fff;
 }

@@ -10,9 +10,6 @@
 
     <title>Employee</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
 
@@ -216,11 +213,27 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Product in stock</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Employee management</h1>
                     </div>
 
-                    <!-- Content Row -->
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Employeenumber</th>
+                                <th>FirstName</th>
+                                <th>LastName</th>
+                                <th>officeCode</th>
+                                <th>jobTitle</th>
+                                <th>Manage</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeData"></tbody>
+                    </table>
+                    <div id="count">
 
+                    </div>
+                    
                 </div>
             </div>
 
@@ -239,6 +252,7 @@
 
     </div>
 
+    
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
@@ -270,6 +284,47 @@
         })
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+             $.ajax({
+                url : '/admin/employee/fetchEmployeeData',
+                type : 'GET',
+                dataType : 'json',
+                success : (data) => {
+                    var append = ''
+                    let count = 1
+                    $.each(data, function(index,each){
+                        var ap = 
+                        append += '<tr>'
+                        append += '<td>' + each.employeeNumber + '</td>'
+                        append += '<td>' + each.firstName + '</td>'
+                        append += '<td>' + each.lastName + '</td>'
+                        append += '<td>' + each.officeCode + '</td>'
+                        append += '<td>' + each.jobTitle + '</td>'
+                        append += '<td>'
+                        append += '<form action = "/admin/employee/edit" method="POST">'
+                        append += '<button type="submit" class="btn btn-primary" id="edit" name="emp" value="'+each.employeeNumber+'"> Edit </button>'
+                        append += '</form>'
+                        append += '</td>'
+                        append += '</tr>'
+                        count ++
+                       
+                    })
+                    // 
+                    if(count < 1)  {
+                        $('#count').append('<p class="btn btn-danger">Found :'+ count + '</p>')
+                    }else $('#count').append('<p class="btn btn-success">Found :'+ count + '</p>')     
+                    $('#employeeData').append(append)
+
+                }
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function(){
+           
+        })
+    </script>
 
 </body>
 
