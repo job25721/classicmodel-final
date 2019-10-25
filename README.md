@@ -3,7 +3,7 @@
 <p>HOW to use this repo</p>
 <b>Make sure you have installed git</b><br>
 <h2>First</b></h2>
-<p>open powersehll or ubuntu and cd your directory</p>
+<p>open powershell cmd or ubuntu and cd your directory</p>
 Powershell : <br>
 <b>PS > git clone https://github.com/job25721/classicmodel-main.git</b> <br>
 Ubuntu : <br>

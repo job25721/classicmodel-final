@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
+    <link href="/css/simple-sidebar.css" rel="stylesheet">
+    <link href="/fontawesome/css/all.css" rel="stylesheet">
     <style>
         .main {
             display: inline-block;
@@ -89,7 +88,7 @@
 
         .bg {
             /* The image used */
-            background-image : url('/bg/loginBG.jpg');
+            background-image: url('/bg/loginBG.jpg');
 
             /* Full height */
             height: 100%;
@@ -103,30 +102,29 @@
 </head>
 
 <body>
-        <img src="/bg/loginBG.jpg" alt="" class="bg" style="opacity: 1;">
-        <div class="main">
-            <form action="/login" method="POST">
-                <p class="h4 text-center mb-4 mt-5">Sign in</p>
-                <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
-                <input type="number" name="username" id="employeeNumber" class="form-control"
-                    placeholder="Enter Username" required>
-                <br>
-                <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
-                <input type="password" name="password" id="pass" class="form-control"
-                    placeholder="Enter Password" required>
-                <div class="text-center mt-4">
-                    <button id="submit" class="btn btn-dark"> Login </button>
-                </div>
-            </form>
-            <div id="line" class="collapse">
-                <hr>
+    <img src="/bg/loginBG.jpg" alt="" class="bg" style="opacity: 1;">
+    <div class="main">
+        <form action="/login" method="POST">
+            <p class="h4 text-center mb-4 mt-5">Sign in</p>
+            <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
+            <input type="text" name="username" id="employeeNumber" class="form-control" placeholder="Enter Username"
+                required>
+            <br>
+            <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
+            <input type="password" name="password" id="pass" class="form-control" placeholder="Enter Password" required>
+            <div class="text-center mt-4">
+                <button id="submit" class="btn btn-dark"> Login </button>
             </div>
+        </form>
+        <div id="line" class="collapse">
+            <hr>
+        </div>
 
-            <div class="w-100 alert alert-danger alert-dismissible collapse" id="myAlert" role="alert">
-                <strong>Error404 : </strong> Login error
-                <button type="button" class="close" id="btnSubmit" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="w-100 alert alert-danger alert-dismissible collapse" id="myAlert" role="alert">
+            <strong>Error404 : </strong> Login error
+            <button type="button" class="close" id="btnSubmit" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <!-- <hr> -->
         <a href="/addUser"><button class="btn btn-success collapse">Add User</button></a>
@@ -141,8 +139,11 @@
 
 </body>
 <script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/fontawesome/js/all.js"></script>
+
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#line').show('fade')
         $('#myAlert').show('fade')
         $('#btnSubmit').click(function () {
@@ -150,8 +151,6 @@
             $('#myAlert').hide('fade')
         })
     })
-        
-    
 </script>
 
 </html>
