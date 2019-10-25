@@ -225,7 +225,7 @@
                                 <h2 class="text-left h3 mb-0">Employee edit</h2>
                             </div>
                             <div class="col-lg-8 push-lg-4 personal-info">
-                                <form role="form" >
+                                <form role="form">
                                     <fieldset disabled>
                                         <div class="form-group row">
                                             <label for="disabledTextInput"
@@ -235,49 +235,56 @@
                                                     value="<%= res[0].employeeNumber%>" />
                                             </div>
                                         </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="<%= res[0].firstName%>" />
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text"
+                                                    value="<%= res[0].firstName%>" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="<%= res[0].lastName%>" />
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" value="<%= res[0].lastName%>" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" type="email" value="<%= res[0].email%>" />
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="email" value="<%= res[0].email%>" />
+                                            </div>
                                         </div>
-                                    </div>
                                     </fieldset>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">JobTitle</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="<%= res[0].jobTitle%>" />
+                                            <select class="form-control" name="" id="">
+                                                <option value="" class="option"><%= res[0].jobTitle%></option>
+                                            </select>
+                                            <!-- <input class="form-control" type="text" value="<%= res[0].jobTitle%>" /> -->
                                         </div>
                                     </div>
                                     <fieldset disabled="disabled">
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">OfficeCode</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="<%= res[0].officeCode%>" placeholder="x" />
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">OfficeCode</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" value="<%= res[0].officeCode%>"
+                                                    placeholder="x" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">extention</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control" type="text" value="<%= res[0].extension%>" placeholder="extention" />
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">extention</label>
+                                            <div class="col-lg-3">
+                                                <input class="form-control" type="text" value="<%= res[0].extension%>"
+                                                    placeholder="extention" />
+                                            </div>
+                                            <label class="col-lg-2 col-form-label form-control-label">reportsTo</label>
+                                            <div class="col-lg-3">
+                                                <input class="form-control" type="text" value="<%= res[0].reportsTo%>"
+                                                    placeholder="reportsTo" />
+                                            </div>
                                         </div>
-                                        <label class="col-lg-2 col-form-label form-control-label">reportsTo</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control" type="text" value="<%= res[0].reportsTo%>" placeholder="reportsTo" />
-                                        </div>
-                                    </div>
-                                </fieldset>
+                                    </fieldset>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                         <div class="col-lg-9">
@@ -351,7 +358,7 @@
         })
     </script>
 
-    
+
 
 
 </body>

@@ -217,7 +217,7 @@
                     </div>
 
                     <table class="table">
-                        <thead class="thead-light">
+                        <thead class="thead-light collapse" id="thead">
                             <tr>
                                 <th>Employeenumber</th>
                                 <th>FirstName</th>
@@ -228,7 +228,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody id="employeeData"></tbody>
+                        <tbody id="employeeData" class="collapse"></tbody>
                     </table>
                     <div id="count">
 
@@ -292,9 +292,8 @@
                 dataType : 'json',
                 success : (data) => {
                     var append = ''
-                    let count = 1
-                    $.each(data, function(index,each){
-                        var ap = 
+                    let count = 0
+                    $.each(data, function(index,each){ 
                         append += '<tr>'
                         append += '<td>' + each.employeeNumber + '</td>'
                         append += '<td>' + each.firstName + '</td>'
@@ -312,9 +311,14 @@
                     })
                     // 
                     if(count < 1)  {
-                        $('#count').append('<p class="btn btn-danger">Found :'+ count + '</p>')
-                    }else $('#count').append('<p class="btn btn-success">Found :'+ count + '</p>')     
-                    $('#employeeData').append(append)
+                        $('#count').append('<p class="btn btn-danger">Found : 0 </p>')
+                    }else{
+                        $('#employeeData').append(append)
+                        $('#thead').show('fade')
+                        $('#employeeData').show('fade')
+                        $('#count').append('<p class="btn btn-success">Found :'+ count + '</p>') 
+                    }     
+                    
 
                 }
             })

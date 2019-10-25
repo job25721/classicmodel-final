@@ -8,11 +8,19 @@ const cookieParser = require('cookie-parser')
 const Database = require('./config/database')
 const sequelize = require('./config/database')
 
-// sequelize.authenticate().then(() => {
-//     console.log("connection successful");
-// }).catch(err => {
-//     console.log('Unable to connect to the database', err);
-// })
+// sequelize
+//     .sync({
+//         logging: console.log,
+//         force: true
+//     })
+//     .then(function () {
+//         console.log("-----------------------------------------");
+//         console.log("Database connected Successful !");
+//     })
+//     .catch(err=>{
+//         console.error("Can't Connect",err);
+
+//     })
 //connect to database
 Database.connect((err) => {
     if (err) {
@@ -40,26 +48,26 @@ Database.connect((err) => {
         app.use(express.static('style'))
         app.use(express.static('public'))
         //routers
-        app.use('/',require('./routes/index')) //indexPageRouter
+        app.use('/', require('./routes/index')) //indexPageRouter
         require('./routes/logger')(app) //logger
-        
+
         //adminPageRouter include auth middleware inside
-        app.use('/admin',require('./routes/admin')) 
-        
-        
-       
+        app.use('/admin', require('./routes/admin'))
+
+
+
 
 
         //listen
         const port = process.env.PORT || 3000
         app.listen(port, (err) => {
             if (err) throw err;
-            else{
+            else {
                 console.log("-----------------------------------------");
-                console.log("Server started on http://localhost:"+port);
+                console.log("Server started on http://localhost:" + port);
                 console.log("-----------------------------------------");
             }
-            
+
         })
     }
 })

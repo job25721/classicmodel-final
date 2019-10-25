@@ -47,20 +47,23 @@ module.exports = {
         })
     },
     fetchEmployee(req,res){
-        Database.query('select * from employees',(err,data)=>{
+        var employeeNumber
+        if(req.session.user !== undefined){
+            employeeNumber = parseInt(req.session.user)
+        }else{
+            employeeNumber = 0
+        }
+        
+        Database.query('select * from employees where reportsTo = ' + employeeNumber ,(err,data)=>{
             res.json(data)
         })
     },
     editEmployee(req,res){
         req.session.editSESSION = parseInt(req.body.emp)
-        
         Database.query('select * from employees where employeeNumber = '+ req.session.editSESSION,(err,data)=>{
             if(data.length > 0)
                 res.render('pages/editEmployee',{res : data})
         })
-        //console.log(req.session.editSESSION);
-        //res.send("OK")
-        
     },
     clearSESSION(req,res){
         req.session.editSESSION = 0
