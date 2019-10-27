@@ -4,7 +4,7 @@ module.exports = mysql.createConnection({
     host : 'localhost',
     user: 'root',
     password: '',
-    database: 'classicmodels'
+    database: 't3'
 })
 
 // const Sequelize = require('sequelize');

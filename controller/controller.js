@@ -49,11 +49,27 @@ module.exports = {
             }else{
                 res.redirect('/login')
             }
-            
+
         });
     },
     logout(req, res) {
         req.session.loggedin = false
         res.redirect('/login')
+    },
+
+    discountAdd(req, res) {
+      code = req.body.code
+      discount = parseInt(req.body.discount)
+      total = parseInt(req.body.total)
+      expire = req.body.exp
+        Database.query("INSERT INTO discounts( Code, Discount, TotalAmount, Expire) VALUES('"+code+"',"+discount+","+total+",'"+expire+"')", function (err, data, fields) {
+            res.redirect('/discount')
+        });
+    },
+    discountDel(req, res) {
+      discountID = parseInt(req.body.discountID)
+        Database.query("DELETE FROM discounts WHERE discountNo = " + discountID , function (err, data, fields) {
+            res.redirect('/discount')
+        });
     }
 }

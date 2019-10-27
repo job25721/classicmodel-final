@@ -215,12 +215,47 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Product in stock</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Discount</h1>
                     </div>
 
                     <!-- Content Row -->
-                    
-                </div>  
+                    <!-- Begin Page Content -->
+                    <!-- Begin Page Content -->
+                    <div class="container">
+                    <table class="table table-border table-striped">
+                      <tr>
+                        <th>No</th>
+                        <th>Code</th>
+                        <th>Discount</th>
+                        <th>Total Amount</th>
+                        <th>Expire</th>
+                        <th>Edit</th>
+                      </tr>
+                        <thead></thead>
+                        <!-- <tbody id='adddiscount'></tbody> -->
+
+                        <form action="/discountAdd" method="POST">
+                          <tr>
+                            <td>0</td>
+                            <td><input type="text" name="code" id="code1" placeholder="Enter Code" size="15" required></td>
+                            <td><input type="number" name="discount" id="discount" placeholder="Discount value" size="15" min="1"></td>
+                            <td><input type="number" name="total" id="total" placeholder="Number of times" size="15" min="1"></td>
+                            <td><input type="date" name="exp" id="exp" placeholder="yyyy/mm/dd" ></td>
+                            <td>
+                                <button id="submit" class="btn btn-success">ADD</button>
+
+                          </td>
+                        </tr>
+                        </form>
+
+                        <tbody id='showdiscount'></tbody>
+                        <!-- <tbody id='deldiscount'></tbody> -->
+                    </table>
+                  </div>
+
+                    <!-- Begin Page Content -->
+                      <!-- Begin Page Content -->
+                </div>
             </div>
 
             <!-- Footer -->
@@ -253,7 +288,41 @@
 
 
     </script>
+     <!-- filter srcipt -->
+    <script type="text/javascript">
+       $(document).ready(() => {
+          $.ajax({
+             url: 'discountShow',
+             type: 'GET',
+             dataType: 'json',
+             success: (data) => {
+                var text,id;
+                text = "";
+                id = 1;
+                $.each(data, function (index, obj) {
+                   text += '<tr>'
+                   text += '<td>'+id+'</td>'
+                   text += '<td>'+obj.Code+'</td>'
+                   text += '<td>'+obj.Discount+'</td>'
+                   text += '<td>'+obj.TotalAmount+'</td>'
+                   text += '<td>'+obj.Expire+'</td>'
+                   text += '<td>' + "<form action='/discountDel' method='POST'>"
+                   text += "<button name='discountID'class='btn btn-primary' Value='"+obj.discountNo +"'> Delete </button> "
+                   text += '</form>' + '</td>'
+                   text += '</tr>'
+                   id = id+1;
+                });
+                $('#showdiscount').html(text);
+             },
+          });
 
+       });
+ //
+       $(document).ajaxError(() => {
+          $('#demo').html('Error: unknown ajaxError!');
+       });
+    </script>
+     <!-- filter srcipt -->
 
 </body>
 

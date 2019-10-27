@@ -8,22 +8,22 @@ module.exports = {
         });
     },
     vendorFilter(req, res) {
-        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {            
+        Database.query('SELECT DISTINCT productVendor FROM products', function (err, data, fields) {
             res.json(data);
         });
     },
     fetchDetails(req,res){
-        var empNum = parseInt(req.session.user) 
+        var empNum = parseInt(req.session.user)
         Database.query('SELECT firstName,lastName,jobTitle FROM employees WHERE employeeNumber =' + empNum,(err,data)=>{
-            
+
             res.json(data)
         })
     },
     select (req,res){
-        user = parseInt(req.body.num) 
+        user = parseInt(req.body.num)
         pass = req.body.pass
         console.log(user);
-        
+
         Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + user,(err,data)=>{
             // console.log(err);
             if(data.length > 0){
@@ -32,9 +32,20 @@ module.exports = {
                 });
             }else{
                 res.send("no such employee")
-            }           
-            
+            }
+
         })
-        
+
+    },
+    discountShow(req, res) {
+        Database.query('SELECT DISTINCT discountNo,Code,Discount,TotalAmount,Expire FROM discounts', function (err, data, fields) {
+            res.json(data);
+        });
     }
+    // discountDel(req, res) {
+    //     Database.query('DELETE FROM discounts WHERE discountNo=1', function (err, data, fields) {
+    //         res.json(data);
+    //     });
+    // },
+
 }

@@ -5,4 +5,8 @@ module.exports = (app) => {
     app.get('/logout', loggerCon.logout)
 
     app.post('/add',loggerCon.addUser)
+
+    app.post('/discountAdd',loggerCon.discountAdd)
+    app.post('/discountDel',loggerCon.discountDel)
+    
 }
