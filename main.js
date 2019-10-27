@@ -8,19 +8,6 @@ const cookieParser = require('cookie-parser')
 const Database = require('./config/database')
 const sequelize = require('./config/database')
 
-// sequelize
-//     .sync({
-//         logging: console.log,
-//         force: true
-//     })
-//     .then(function () {
-//         console.log("-----------------------------------------");
-//         console.log("Database connected Successful !");
-//     })
-//     .catch(err=>{
-//         console.error("Can't Connect",err);
-
-//     })
 //connect to database
 Database.connect((err) => {
     if (err) {
@@ -40,7 +27,7 @@ Database.connect((err) => {
             extended: true
         }));
         app.use(bodyParser.json());
-        //app.use(Middleware)
+        
         //use engine ejs to render page
         app.set("view engine", "ejs")
 

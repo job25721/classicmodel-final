@@ -31,7 +31,7 @@ module.exports = {
     },
 
     login(req, res) {        
-        empNum = parseInt(req.body.username)
+        empNum = parseInt(req.body.empployeeNumber)
         password = req.body.password
         Database.query('SELECT pswd FROM users WHERE employeeNumber = ' + empNum, (err, data) => {
             if(data.length > 0){
@@ -39,13 +39,17 @@ module.exports = {
                     if (compared) {
                         req.session.loggedin = true
                         req.session.user = empNum
-                        res.redirect('/admin')
+                        res.json({failed:false,worked:true,who : empNum})
                     } else {
-                        res.redirect('/login')
+                        req.session.loggedin = false
+                        req.session.user = null
+                        res.json({failed:true,worked:true})
                     }
                 });
             }else{
-                res.render('pages/login',{status:"failed"})
+                req.session.loggedin = false
+                req.session.user = null
+                res.json({failed:true,worked:false})
             }
             
         });

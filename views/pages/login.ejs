@@ -103,40 +103,36 @@
 
 <body>
     <img src="/bg/loginBG.jpg" alt="" class="bg" style="opacity: 1;">
+    <a href="/addUser"><button class="btn btn-success">Add User</button></a>
     <div class="main">
-        <form action="/login" method="POST">
-            <p class="h4 text-center mb-4 mt-5">Sign in</p>
-            <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
-            <input type="text" name="username" id="employeeNumber" class="form-control" placeholder="Enter Username"
-                required>
-            <br>
-            <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
-            <input type="password" name="password" id="pass" class="form-control" placeholder="Enter Password" required>
-            <div class="text-center mt-4">
-                <button id="submit" class="btn btn-dark"> Login </button>
-            </div>
-        </form>
+        <p class="h4 text-center mb-4 mt-5">Sign in</p>
+        <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
+        <input type="text" name="username" id="employeeNumber" class="form-control" placeholder="Enter Username"
+            value="1056" required>
+        <br>
+        <label for="defaultFormLoginPasswordEx" class="grey-text">Password</label>
+        <input type="password" name="password" id="pass" class="form-control" placeholder="Enter Password" value="1234" required>
+        <div class="text-center mt-4">
+            <button type="submit" id="submit" class="btn btn-dark"> Login </button>
+        </div>
+
         <div id="line" class="collapse">
             <hr>
         </div>
 
         <div class="w-100 alert alert-danger alert-dismissible collapse" id="myAlert" role="alert">
-            <strong>Error404 : </strong> Login error
-            <button type="button" class="close" id="btnSubmit" data-dismiss="alert" aria-label="Close">
+            <div id="msg">
+
+            </div>
+
+            <button type="button" class="close" id="btnClose">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <!-- <hr> -->
-        <a href="/addUser"><button class="btn btn-success collapse">Add User</button></a>
+        
     </div>
-
-
-
-
-
-
-
-
+    
 </body>
 <script src="/jquery/jquery.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
@@ -144,12 +140,54 @@
 
 <script>
     $(document).ready(function () {
-        $('#line').show('fade')
-        $('#myAlert').show('fade')
-        $('#btnSubmit').click(function () {
-            $('#line').hide('fade')
-            $('#myAlert').hide('fade')
+        $('#submit').click(function (e) {
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                data: {
+                    empployeeNumber: $('#employeeNumber').val(),
+                    password: $('#pass').val()
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.failed && data.worked) {
+                        $('#line').hide('fade')
+                        $('#myAlert').hide('fade')
+                        setTimeout(function () {
+                            $('#msg').html(
+                                '<strong>Error : </strong> Wrong Password')
+                        }, 500)
+                        $('#line').show('fade')
+                        $('#myAlert').show('fade')
+                        $('#btnClose').click(function () {
+                            $('#line').hide('fade')
+                            $('#myAlert').hide('fade')
+                        })
+                    } else if (data.failed === true && data.worked === false) {
+                        $('#line').hide('fade')
+                        $('#myAlert').hide('fade')
+                        setTimeout(function () {
+                            $('#msg').html(
+                                '<strong>Error : </strong> no such employee data'
+                                )
+                        }, 500)
+                        $('#line').show('fade')
+                        $('#myAlert').show('fade')
+                        $('#btnClose').click(function () {
+                            $('#line').hide('fade')
+                            $('#myAlert').hide('fade')
+                        })
+                    } else {
+                        alert("you've logged in by employeenumber : " + data.who)
+                        setTimeout("location.href = '/admin';", 100);
+                    }
+                }
+            })
         })
+
+
+
+
     })
 </script>
 

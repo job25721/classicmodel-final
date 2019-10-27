@@ -12,9 +12,9 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
-   <link href="/css/style.css" rel="stylesheet">
-   <link rel="stylesheet" href="/css/responsive.css">
-   <link href="/fontawesome/css/all.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link href="/fontawesome/css/all.css" rel="stylesheet">
 
 </head>
 
@@ -107,6 +107,7 @@
                     <i class="fas fa-fw fa-id-card"></i>
                     <span>Employees management</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -216,7 +217,6 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Employee management</h1>
                     </div>
-
                     <table class="table">
                         <thead class="thead-light collapse" id="thead">
                             <tr>
@@ -226,15 +226,12 @@
                                 <th>officeCode</th>
                                 <th>jobTitle</th>
                                 <th>Manage</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="employeeData" class="collapse"></tbody>
                     </table>
-                    <div id="count">
-
-                    </div>
-                    
+                    <div id="count"></div>
+                    <a href="/admin/employee/e" class="btn btn-primary">ตัวอย่างฟอร์มแก้ไข</a>
                 </div>
             </div>
 
@@ -256,75 +253,110 @@
     <div id="quickview-wrapper">
         <!-- Modal -->
         <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
-           <div class="modal-dialog modal__container" role="document">
-              <div class="modal-content">
-                 <div class="modal-header modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                          aria-hidden="true">&times;</span></button>
-                 </div>
-                 <div class="modal-body">
-                    <div class="modal-product">
-                       <!-- Start product images -->
-                       <div class="product-images">
-                          <div class="main-image images">
-                             <img alt="big images" src="/img/test10.jpg"
-                                style="max-width: 100%; transition: all 0.3s ease-out 0s;margin-bottom: 0;">
-                          </div>
-                       </div>
-                       <!-- end product images -->
-                       <div class="product-info">
-                          <h1 class="sfmono">productName</h1>
-                          <div class="price-box-3">
-                             <div class="s-price-box">
-                                <span class="new-price">$99.99</span>
-                                <span class="old-price">$11.11</span>
-                             </div>
-                          </div>
-                          <div class="quick-desc">
-                             Description
-                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe dignissimos atque ducimus
-                             magni ratione quas esse voluptatibus reprehenderit veniam corporis maiores natus officiis
-                             pariatur alias doloribus porro, voluptates distinctio autem.
-                          </div>
-                          <div class="product-detail">
-                             <h2>productCode</h2>&nbsp; <h3>S99_9999</h3>
-                          </div>
-                          <div class="product-detail">
-                             <h2>productScale</h2>&nbsp; <h3>1:9999999</h3>
-                          </div>
-                          <div class="product-detail">
-                             <h2>Vendor</h2>&nbsp; <h3>Mr.Parinya Seetawan</h3>
-                          </div>
-                          <div class="product-detail">
-                             <h2>Quantity</h2>&nbsp; <h3>9999</h3>
-                          </div>
-                          <div class="social-sharing">
-                             <div class="widget widget_socialsharing_widget">
-                                <h3 class="widget-title-modal sfmono">Share this product</h3>
-                                <ul class="social-icons">
-                                   <li><a target="_blank" title="facebook" href="#" class="social-icon"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                   </li>
-                                   <li><a target="_blank" title="twitter" href="#" class="social-icon"><i
-                                            class="fab fa-twitter"></i></a></li>
-                                   <li><a target="_blank" title="pinterest" href="#" class="social-icon"><i
-                                            class="fab fa-pinterest-p"></i></a>
-                                   </li>
-                                   <li><a target="_blank" title="tumblr" href="#" class="social-icon"><i
-                                            class="fab fa-tumblr"></i></a></li>
-                                   <li><a target="_blank" title="instagram" href="#" class="social-icon"><i
-                                            class="fab fa-instagram"></i></i></a></li>
-                                </ul>
-                             </div>
-                          </div>
-                       </div>
+            <div class="modal-dialog modal__container" role="document">
+                <div class="modal-content">
+                    <div class="modal-header modal__header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
-                 </div>
-              </div>
-           </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row m-y-2">
+                                <!-- edit form column -->
+                                <div class="col-lg-2 btn btn-primary">
+                                    <h2 class="text-left h3 mb-0" style="color: white;">Employee edit</h2>
+                                </div>
+                                <div class="col-lg-8 push-lg-4 personal-info">
+                                    <form role="form">
+                                        <fieldset disabled>
+                                            <div class="form-group row">
+                                                <label for="disabledTextInput"
+                                                    class="col-lg-3 col-form-label form-control-label">EmployeeNumber</label>
+                                                <div class="col-lg-9" id="empNum">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label">First
+                                                    name</label>
+                                                <div class="col-lg-9" id="fname">                        
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label">Last
+                                                    name</label>
+                                                <div class="col-lg-9" id="lname">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                                <div class="col-lg-9" id="email">
+                                                    
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">JobTitle</label>
+                                            <div class="col-lg-9">
+                                                <select class="form-control" name="" id="">
+                                                    <option class="option"></option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <fieldset disabled="disabled">
+                                            <div class="form-group row">
+                                                <label
+                                                    class="col-lg-3 col-form-label form-control-label">OfficeCode</label>
+                                                <div class="col-lg-9" id="officeCode">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label
+                                                    class="col-lg-3 col-form-label form-control-label">extention</label>
+                                                <div class="col-lg-3" id="extension">
+                                                   
+                                                </div>
+                                                <label
+                                                    class="col-lg-2 col-form-label form-control-label">reportsTo</label>
+                                                <div class="col-lg-3" id="reportsTo">
+                                                    
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="password"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                                            <div class="col-lg-9">
+                                                <input type="button" class="btn btn-primary" value="Save Changes" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-product">
+                            <!-- Start product images -->
+                            <div class="product-images">
+                                <div class="main-image images">
+                                    <!-- <img alt="big images" src="/img/test10.jpg"
+                                style="max-width: 100%; transition: all 0.3s ease-out 0s;margin-bottom: 0;"> -->
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-     </div>
-    
+    </div>
+
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
@@ -357,51 +389,87 @@
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-             $.ajax({
-                url : '/admin/employee/fetchEmployeeData',
-                type : 'GET',
-                dataType : 'json',
-                success : (data) => {
+        $(document).ready(function () {
+            $.ajax({
+                url: '/admin/employee/fetchEmployeeData',
+                type: 'GET',
+                dataType: 'json',
+                success: (data) => {
                     var append = ''
                     let count = 0
-                    $.each(data, function(index,each){ 
+                    $.each(data, function (index, each) {
                         append += '<tr>'
                         append += '<td>' + each.employeeNumber + '</td>'
                         append += '<td>' + each.firstName + '</td>'
                         append += '<td>' + each.lastName + '</td>'
                         append += '<td>' + each.officeCode + '</td>'
                         append += '<td>' + each.jobTitle + '</td>'
-                        append += '<td>' 
-                        append += '<form action = "#" ">'
-                        append += '<button type="submit" class="btn btn-primary quick-view modal-view detail-link" data-toggle="modal" data-target="#productModal" id="edit" name="emp" value="'+each.employeeNumber+'"> Edit </button>'
-                        append += '</form>'
+                        append += '<td>'
+                        // append += '<form action = "#" method ="POST">'
+                        append +=
+                            '<button type="submit" class="btn btn-primary quick-view modal-view detail-link" data-toggle="modal" data-target="#productModal" id="edit" name="emp" value="' +
+                            each.employeeNumber + '"> Edit </button>'
+                        // append += '</form>'
                         append += '</td>'
                         append += '</tr>'
-                        count ++
-                       
+                        count++
+
                     })
                     // 
-                    if(count < 1)  {
+                    if (count < 1) {
                         $('#count').append('<p class="btn btn-danger">Found : 0 </p>')
-                    }else{
+                    } else {
                         $('#employeeData').append(append)
-                        $('#thead').show('fade')
-                        $('#employeeData').show('fade')
-                        $('#count').append('<p class="btn btn-success">Found :'+ count + '</p>') 
-                    }     
+                        $('#thead').first().show("fast")
+                        $('#employeeData').show("fast")
+                        $('#count').append('<p class="btn btn-success">Found :' + count + '</p>') 
+                        
+                    }
+                    document.querySelectorAll("#edit").forEach(emp=>{
+                        emp.addEventListener('click',function(){
+                            $.ajax({
+                                url : '/admin/employee/edit',
+                                type : 'POST',
+                                dataType : 'json',
+                                data : {employeeNumber : emp.value},
+                                success : function(data){
+                                    var html = ''
+                                    var query = data[0]
+                                    html = '<input class="form-control" id="disabledTextInput" type="text"value="'+query.employeeNumber+'" />'
+                                    $('#empNum').html(html)
+                                    html = '<input class="form-control" type="text" value="'+query.firstName+'" />'
+                                    $('#fname').html(html)
+                                    html = '<input class="form-control" type="text" value="'+query.lastName+'" />'
+                                    $('#lname').html(html)
+                                    html = '<input class="form-control" type="email" value="'+query.email+'" />'
+                                    $('#email').html(html)
+                                    html = '<input class="form-control" type="text" value="'+query.officeCode+'" />'
+                                    $('#officeCode').html(html)
+                                    html = ' <input class="form-control" type="text" value="'+query.extension+'"/>'
+                                    $('#extension').html(html)
+                                    html = '<input class="form-control" type="text" value="'+query.reportsTo+'" />'
+                                    $('#reportsTo').html(html)
+                                }
+                            })
+                        })
+                    })
                     
 
                 }
+                
+            })
+        })        
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            //document.addEventListener('DOM')
+            $('#getElement').click(function(){
+                console.log(document.querySelectorAll("#edit"));
+                
             })
         })
     </script>
-    <script>
-        $(document).ready(function(){
-           
-        })
-    </script>
-
 </body>
 
 </html>

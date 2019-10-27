@@ -23,12 +23,10 @@ module.exports = {
         res.render('pages/customer')
     },
     Employee(req, res) {
-        res.render('pages/employee')
+        res.render ('pages/employee')
     },
-    editEmployee(req ,res){
-        res.render('pages/editEmployee')
-    },
-    
+    e(req,res){res.render('pages/editEmployee')},
+  
     //dataFetch
     fetchDetails(req, res) {
         var empNum = parseInt(req.session.user)
@@ -53,20 +51,16 @@ module.exports = {
         }else{
             employeeNumber = 0
         }
-        
         Database.query('select * from employees where reportsTo = ' + employeeNumber ,(err,data)=>{
             res.json(data)
         })
     },
     editEmployee(req,res){
-        req.session.editSESSION = parseInt(req.body.emp)
+        req.session.editSESSION = parseInt(req.body.employeeNumber)
+        console.log(req.session.editSESSION);
         Database.query('select * from employees where employeeNumber = '+ req.session.editSESSION,(err,data)=>{
             if(data.length > 0)
-                res.render('pages/editEmployee',{res : data})
+                res.json(data)
         })
-    },
-    clearSESSION(req,res){
-        req.session.editSESSION = 0
-        res.redirect('/admin/employee')
     }
 }
