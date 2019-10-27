@@ -14,6 +14,7 @@
    <link href="/css/style.css" rel="stylesheet">
    <link rel="stylesheet" href="/css/responsive.css">
    <link href="/fontawesome/css/all.css" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 
@@ -92,44 +93,28 @@
                   <div class="col-xl-3 col-lg-4 col-md-5">
                      <div class="sidebar-filter mt-0">
                         <div class="top-filter-head sfmono">Product Filters</div>
-                        <div class="common-filter">
-                           <div class="head">Scale</div>
-                           <form action="#">
-                              <ul>
-                                 <div >
-                                    <ul id="scalefilter"></ul>
-                                 </div>
-                                 
+                        <!-- <div class="common-filter"> -->
+                        <!-- <div class="head">Scale</div> -->
+                        <form action="/catalog" method="GET">
+                           <div class="common-filter">
+
+                              <ul id="scalefilter">
+
                               </ul>
-                           </form>
-                        </div>
-                        <div class="common-filter ">
-                           <div class="head">Vendor</div>
-                           <form action="#">
-                              <ul>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="men"
-                                       name="brand"><label for="men">Men</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="women"
-                                       name="brand"><label for="women">Women</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="accessories"
-                                       name="brand"><label for="accessories">Accessories</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear"
-                                       name="brand"><label for="footwear">Footwear</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="bayItem"
-                                       name="brand"><label for="bayItem">Bay item</label></li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="electronics"
-                                       name="brand"><label for="electronics">Electronics</label>
-                                 </li>
-                                 <li class="filter-list"><input class="pixel-radio" type="radio" id="food"
-                                       name="brand"><label for="food">Food</label></li>
+                           </div>
+
+                           <!-- </div> -->
+                           <!-- <div class="common-filter "> -->
+                           <!-- <div class="head">Vendor</div> -->
+                           <div class="common-filter ">
+                              <ul id="vendorfilter">
+                                 <!--Vendor Appendhere-->
                               </ul>
-                           </form>
-                        </div>
+                           </div>
+                        </form>
+                        <!-- </div> -->
                         <div class="mx-5 my-2"></div>
-                        <p>Vendor: <%= Ven  %></p>
-                        <p>Scale : <%= Sc  %> </p>
-                        <p>Found <%= rowNum  %> products</p>
+
                      </div>
 
                   </div>
@@ -137,19 +122,15 @@
 
                   <div class="col-xl-9 col-lg-8 col-md-7">
                      <div class="filter-bar d-flex flex-wrap align-items-center">
-                        <div class="sorting">
-                           <select>
-                              <option value="1">Default sorting</option>
-                              <option value="1">Default sorting</option>
-                              <option value="1">Default sorting</option>
-                           </select>
-                        </div>
+                        
+                        
+                        <h3 id="number-row"></h3>
                         <div class="sorting mr-auto">
 
                         </div>
                         <div>
                            <div class="input-group filter-bar-search">
-                              <input type="text" placeholder="Search">
+                              <input type="text" placeholder="Search" id="myInput">
                               <div class="input-group-append">
                                  <button type="button"><i class="fas fa-search fa-sm"
                                        style="color: #999999;"></i></button>
@@ -158,25 +139,8 @@
                         </div>
                      </div>
 
-                     <div class="row">
-                        <% for(var i=0; i < result.length; i++) { %>
-                        <div class="col-md-6 col-lg-4" id='<%= result[i].productName %>'>
-                           <div class="text-center card-product">
-                              <div class="card-product__img">
-                                 <a data-toggle="modal" data-target="#productModal" title="Product detail"
-                                    class="quick-view modal-view detail-link" href="#"><img class="card-img"
-                                       src="/img/<%=result[i].imgSrc%>" alt=""></a>
-                              </div>
-                              <div class="card-body">
-                                 <p>Scale <%= result[i].productScale %></p>
-                                 <h4 class="card-product__title sfmono"><%= result[i].productName %></h4>
-                                 <p class="price">$<%= result[i].buyPrice %> </p>
+                     <div class="row" id="product-row">
 
-                                 <p>Vendor: <%= result[i].productVendor %></p>
-                              </div>
-                           </div>
-                        </div>
-                        <% } %>
                      </div>
                   </div>
                </div>
@@ -200,36 +164,36 @@
                      <!-- Start product images -->
                      <div class="product-images">
                         <div class="main-image images">
-                           <img alt="big images" src="/img/test10.jpg"
+                           <img alt="big images" id="pop-img" src="/img/test10.jpg"
                               style="max-width: 100%; transition: all 0.3s ease-out 0s;margin-bottom: 0;">
                         </div>
                      </div>
                      <!-- end product images -->
                      <div class="product-info">
-                        <h1 class="sfmono">productName</h1>
+                        <h1 class="sfmono" id="pop-name">productName</h1>
                         <div class="price-box-3">
                            <div class="s-price-box">
-                              <span class="new-price">$99.99</span>
-                              <span class="old-price">$11.11</span>
+                              <span class="new-price" id="pop-price">$99.99</span>
+                              <!-- <span class="old-price">$11.11</span> -->
                            </div>
                         </div>
-                        <div class="quick-desc">
+                        <div class="quick-desc" id="pop-desc">
                            Description
                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe dignissimos atque ducimus
                            magni ratione quas esse voluptatibus reprehenderit veniam corporis maiores natus officiis
                            pariatur alias doloribus porro, voluptates distinctio autem.
                         </div>
-                        <div class="product-detail">
-                           <h2>productCode</h2>&nbsp; <h3>S99_9999</h3>
+                        <div class="product-detail" >
+                           <h2>productCode</h2>&nbsp; <h3 id="pop-code">S99_9999</h3>
                         </div>
-                        <div class="product-detail">
-                           <h2>productScale</h2>&nbsp; <h3>1:9999999</h3>
+                        <div class="product-detail" >
+                           <h2>productScale</h2>&nbsp; <h3 id="pop-scale">1:9999999</h3>
                         </div>
-                        <div class="product-detail">
-                           <h2>Vendor</h2>&nbsp; <h3>Mr.Parinya Seetawan</h3>
+                        <div class="product-detail" >
+                           <h2>Vendor</h2>&nbsp; <h3 id="pop-vendor" >Mr.Parinya Seetawan</h3>
                         </div>
-                        <div class="product-detail">
-                           <h2>Quantity</h2>&nbsp; <h3>9999</h3>
+                        <div class="product-detail" >
+                           <h2>Quantity</h2>&nbsp; <h3 id="pop-quantity">9999</h3>
                         </div>
                         <div class="social-sharing">
                            <div class="widget widget_socialsharing_widget">
@@ -258,6 +222,9 @@
       </div>
    </div>
 
+
+
+
    <script src="/jquery/jquery.min.js"></script>
    <script src="/js/bootstrap.bundle.min.js"></script>
    <script src="/fontawesome/js/all.js"></script>
@@ -274,54 +241,191 @@
 
    <script type="text/javascript">
       $(document).ready(() => {
-         $.ajax({
-            url: '/catalog/scaleFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               
-               $("#scalefilter").append('<li class="filter-list"><input class="pixel-radio" type="radio" name="scale" value="All"><label >All</label></li>')
+
+
+
+
+         $.when(
+
+            $.ajax({
+               url: '/catalog/scaleFilter',
+               type: 'GET',
+               dataType: 'json'
+            }).done((data) => {
+               $("#scalefilter").append(
+                  '<li class="filter-list"><input class="pixel-radio" type="radio" name="scale"  value="All"  checked="checked"   ><label>All</label></li>'
+               );
+
                $.each(data, function (index, obj) {
-         
-                  $("#scalefilter").append('<li class="filter-list"><input class="pixel-radio" type="radio" name="scale" value='+obj.productScale+'><label >'+obj.productScale+'</label></li>')
-               });
-               //$('#scalefilter').html( text);
-            },
-         });
-         $.ajax({
-            url: '/catalog/vendorFilter',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-               $("#vendorfilter").append("<option  value='All' >All</option>");
-               $.each(data, function (index, obj) {
-                  $("#vendorfilter").append("<option  value='" + obj.productVendor + "'>" + obj
-                     .productVendor + "</option>");
-               });
-               //$('#vendorfilter').html( text);
-            },
-         });
+                  $("#scalefilter").append(
+                     '<li class="filter-list"><input class="pixel-radio" type="radio" name="scale"  value="' +
+                     obj.productScale + '"  ><label>' + obj.productScale + '</label></li>');
+
+               })
+
+
+
+
+            }),
+
+
+
+
+
+
+
+
+            $.ajax({
+               url: '/catalog/vendorFilter',
+               type: 'GET',
+               dataType: 'json',
+               success: (data) => {
+                  $("#vendorfilter").append(
+                     '<li class="filter-list"><input class="pixel-radio" type="radio" name="vendor"  value="All" checked="checked"   ><label>All</label></li>'
+                  );
+                  $.each(data, function (index, obj) {
+                     $("#vendorfilter").append(
+                        '<li class="filter-list"><input class="pixel-radio" type="radio" name="vendor" value="' +
+                        obj.productVendor + '"><label>' + obj.productVendor + '</label></li>');
+                  });
+               },
+            })
+
+         ).done(() => {
+
+
+            var scalev = $('[name=scale]:checked').val();
+            var vendorv = $('[name=vendor]:checked').val();
+            $.ajax({
+               url: 'catalog/getData?scale=' + scalev + '&vendor=' + vendorv,
+               type: 'GET',
+               dataType: 'json',
+               success: (data) => {
+                  $('#product-row').empty();
+                  for (var i = 0; i < data.result.length; i++) {
+                     $('#product-row').append('<div class="col-md-6 col-lg-4" >\
+    <div class="text-center card-product">\
+    <div class="card-product__img" >\
+    <a data-toggle="modal" data-target="#productModal" title="Product detail" class="quick-view modal-view detail-link" href="#"><img class="card-img" src="/img/' +
+                        JSON.parse(JSON.stringify(data.result[i].imgSrc)) + '" id=' + data.result[i].productCode +
+                        ' ></a>\
+    </div>\
+    <div class="card-body">\
+    <p>Scale' + JSON.parse(JSON.stringify(data.result[i].productScale)) + '</p>\
+    <h4 class="card-product__title sfmono">' + JSON.parse(JSON.stringify(data.result[i].productName)) + '</h4>\
+    <p class="price">$' + JSON.parse(JSON.stringify(data.result[i].buyPrice)) + ' </p>\
+    <p>Vendor: ' + JSON.parse(JSON.stringify(data.result[i].productVendor)) + '</p>\
+     </div>\
+    </div>\
+ </div>')
+                  }
+                  
+               }
+            })
+
+         })
+
+
+
+
+         $(document).on('click', ".pixel-radio", () => {
+           
+            var scalev = $('[name=scale]:checked').val();
+            var vendorv = $('[name=vendor]:checked').val();
+            $.ajax({
+               url: 'catalog/getData?scale=' + scalev + '&vendor=' + vendorv,
+               type: 'GET',
+               dataType: 'json',
+               success: (data) => {
+                  $('#product-row').empty();
+                  for (var i = 0; i < data.result.length; i++) {
+                     $('#product-row').append('<div class="col-md-6 col-lg-4">\
+    <div class="text-center card-product">\
+    <div class="card-product__img" >\
+    <a data-toggle="modal" data-target="#productModal" title="Product detail" class="quick-view modal-view detail-link" href="#"><img class="card-img" src="/img/' +
+                        JSON.parse(JSON.stringify(data.result[i].imgSrc)) + '"  id=' + data.result[i].productCode +
+                        '></a>\
+    </div>\
+    <div class="card-body">\
+    <p>Scale' + JSON.parse(JSON.stringify(data.result[i].productScale)) + '</p>\
+    <h4 class="card-product__title sfmono">' + JSON.parse(JSON.stringify(data.result[i].productName)) + '</h4>\
+    <p class="price">$' + JSON.parse(JSON.stringify(data.result[i].buyPrice)) + ' </p>\
+    <p>Vendor: ' + JSON.parse(JSON.stringify(data.result[i].productVendor)) + '</p>\
+     </div>\
+    </div>\
+ </div>')
+                  }
+               }
+            })
+         })
+
+       
+         $( document).on('click','.card-img', (e) => {
+           var productCode = e.target.id
+           $.ajax({
+               url: 'catalog/fetchPopUp?productCode='+productCode,
+               type: 'GET',
+               dataType: 'json',
+               success: (data) => {
+                  
+                  $('#pop-name').html(data[0].productName)
+                  $('#pop-price').html('$'+data[0].buyPrice)
+                  $('#pop-desc').html(data[0].productDescription)
+                  $('#pop-code').html(data[0].productCode)
+                  $('#pop-scale').html(data[0].productScale)
+                  $('#pop-vendor').html(data[0].productVendor)
+                  $('#pop-quantity').html(data[0].quantityInStock)
+                  $('#pop-img').attr('src','/img/'+data[0].imgSrc)
+                  
+
+               }
+            })
+           
+
+        })
+      
+
+
+
+
+
       });
+      $( document ).ajaxStop(function() {
+         var i=0;
+      $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#product-row div ").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      
+    });
+    
+    if($('.card-product__img').css('display') == 'none') {
+         $('.card-product__img').css('display',"");
+       
+    }
+    var num = $('.col-md-6:not([style*="display: none"])').length;
+    if(num == 0 ) $('#number-row').html('Product is not found')
+    else if( num == 1) $('#number-row').html('Found ' +num+' product ');
+    else $('#number-row').html('Found ' +num+' products ')
+  
+  });
+  
+  var num = $('.col-md-6:not([style*="display: none"])').length;
+    if(num == 0 ) $('#number-row').html('Product is not found')
+    else if( num == 1) $('#number-row').html('Found ' +num+' product ');
+    else $('#number-row').html('Found ' +num+' products ')
+
+  
+})
+
+
       $(document).ajaxError(() => {
          $('#demo').html('Error: unknown ajaxError!');
-      });
+      })
    </script>
 
-   <!-- <div class="social-sharing">
-      <div class="widget widget_socialsharing_widget">
-         <h3 class="widget-title-modal sfmono">Share this product</h3>
-         <ul class="social-icons">
-            <li><a target="_blank" title="facebook" href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            </li>
-            <li><a target="_blank" title="twitter" href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
-            <li><a target="_blank" title="pinterest" href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
-            </li>
-            <li><a target="_blank" title="tumblr" href="#" class="social-icon"><i class="fab fa-tumblr"></i></a></li>
-            <li><a target="_blank" title="instagram" href="#" class="social-icon"><i
-                     class="fab fa-instagram"></i></i></a></li>
-         </ul>
-      </div>
-   </div> -->
+
+
 
 </body>
 

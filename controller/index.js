@@ -14,49 +14,78 @@ module.exports = {
     },
     Catalog(req, res) {
         var scale = req.query.scale;
-        var vendor = req.query.vendor;
-
+        var vendor = req.query.vendor; 
         if ((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All")) {
             Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)', function (err, result, fields) {
 
-                res.render('pages/catalog/catalog', {
+                res.render('pages/catalog/catalog')
+            });
+        } else if (scale === "All" && vendor !== "All") {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productVendor = ?', vendor, function (err, result, fields) {
+
+                res.render('pages/catalog/catalog')
+            })
+        } else if (scale !== "All" && vendor === "All") {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ?', scale, function (err, result, fields) {
+
+                res.render('pages/catalog/catalog')
+            })
+        } else {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ? and productVendor = ?', [scale, vendor], function (err, result, fields) {
+
+                res.render('pages/catalog/catalog')
+            })
+        }
+    },
+
+    getData(req, res) {
+       /* Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)', function (err, result, fields) {
+
+            res.json({result: result})
+        });*/
+        var scale = req.query.scale;
+        var vendor = req.query.vendor; 
+        if ((scale === undefined && vendor === undefined) || (scale === "All" && vendor === "All")) {
+            Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine)', function (err, result, fields) {
+
+                res.json({
                     result: result,
-                    Sc: scale,
-                    Ven: vendor,
                     rowNum: result.length
                 })
             });
         } else if (scale === "All" && vendor !== "All") {
             Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productVendor = ?', vendor, function (err, result, fields) {
 
-                res.render('pages/catalog/catalog', {
+                res.json({
                     result: result,
-                    Sc: scale,
-                    Ven: vendor,
                     rowNum: result.length
                 })
             })
         } else if (scale !== "All" && vendor === "All") {
             Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ?', scale, function (err, result, fields) {
 
-                res.render('pages/catalog/catalog', {
+                res.json({
                     result: result,
-                    Sc: scale,
-                    Ven: vendor,
                     rowNum: result.length
                 })
             })
         } else {
             Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productScale = ? and productVendor = ?', [scale, vendor], function (err, result, fields) {
 
-                res.render('pages/catalog/catalog', {
+                res.json({
                     result: result,
-                    Sc: scale,
-                    Ven: vendor,
                     rowNum: result.length
                 })
             })
         }
+
+    },
+    fetchPopUp(req, res) {
+        var code = req.query.productCode
+        Database.query('SELECT * FROM `products` JOIN `productlines` USING (productLine) where productCode = ? ', [code], function (err, result, fields) {
+            res.json( result)
+        })
+
     },
     addUser(req, res) {
         res.render('pages/addUser', {
