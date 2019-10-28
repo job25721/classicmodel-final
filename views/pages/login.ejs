@@ -140,7 +140,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#submit').click(function (e) {
+        $('#submit').click(function () {
             $.ajax({
                 url: '/login',
                 type: 'POST',
@@ -150,6 +150,7 @@
                 },
                 dataType: 'json',
                 success: function (data) {
+                    
                     if (data.failed && data.worked) {
                         $('#line').hide('fade')
                         $('#myAlert').hide('fade')
@@ -163,7 +164,7 @@
                             $('#line').hide('fade')
                             $('#myAlert').hide('fade')
                         })
-                    } else if (data.failed === true && data.worked === false) {
+                    } else if (data.failed && !data.worked) {
                         $('#line').hide('fade')
                         $('#myAlert').hide('fade')
                         setTimeout(function () {

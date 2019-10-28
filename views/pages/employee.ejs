@@ -278,7 +278,7 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label">First
                                                     name</label>
-                                                <div class="col-lg-9" id="fname">                        
+                                                <div class="col-lg-9" id="fname">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -290,7 +290,7 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                                 <div class="col-lg-9" id="email">
-                                                    
+
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -308,26 +308,26 @@
                                                 <label
                                                     class="col-lg-3 col-form-label form-control-label">OfficeCode</label>
                                                 <div class="col-lg-9" id="officeCode">
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label
                                                     class="col-lg-3 col-form-label form-control-label">extention</label>
                                                 <div class="col-lg-3" id="extension">
-                                                   
+
                                                 </div>
                                                 <label
                                                     class="col-lg-2 col-form-label form-control-label">reportsTo</label>
                                                 <div class="col-lg-3" id="reportsTo">
-                                                    
+
                                                 </div>
                                             </div>
                                         </fieldset>
                                         <div class="form-group row">
                                             <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                             <div class="col-lg-9">
-                                                <input class="form-control" type="password"/>
+                                                <input class="form-control" type="password" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -348,7 +348,7 @@
                                 style="max-width: 100%; transition: all 0.3s ease-out 0s;margin-bottom: 0;"> -->
                                 </div>
                             </div>
-                            
+
 
                         </div>
                     </div>
@@ -422,51 +422,68 @@
                         $('#employeeData').append(append)
                         $('#thead').first().show("fast")
                         $('#employeeData').show("fast")
-                        $('#count').append('<p class="btn btn-success">Found :' + count + '</p>') 
-                        
-                    }
-                    document.querySelectorAll("#edit").forEach(emp=>{
-                        emp.addEventListener('click',function(){
-                            $.ajax({
-                                url : '/admin/employee/edit',
-                                type : 'POST',
-                                dataType : 'json',
-                                data : {employeeNumber : emp.value},
-                                success : function(data){
-                                    var html = ''
-                                    var query = data[0]
-                                    html = '<input class="form-control" id="disabledTextInput" type="text"value="'+query.employeeNumber+'" />'
-                                    $('#empNum').html(html)
-                                    html = '<input class="form-control" type="text" value="'+query.firstName+'" />'
-                                    $('#fname').html(html)
-                                    html = '<input class="form-control" type="text" value="'+query.lastName+'" />'
-                                    $('#lname').html(html)
-                                    html = '<input class="form-control" type="email" value="'+query.email+'" />'
-                                    $('#email').html(html)
-                                    html = '<input class="form-control" type="text" value="'+query.officeCode+'" />'
-                                    $('#officeCode').html(html)
-                                    html = ' <input class="form-control" type="text" value="'+query.extension+'"/>'
-                                    $('#extension').html(html)
-                                    html = '<input class="form-control" type="text" value="'+query.reportsTo+'" />'
-                                    $('#reportsTo').html(html)
-                                }
-                            })
-                        })
-                    })
-                    
+                        $('#count').append('<p class="btn btn-success">Found :' + count + '</p>')
 
+                    }
                 }
-                
             })
-        })        
+        })
+    </script>
+    <script>
+        $(document).on('click', '#edit', function () {
+            var emp = this
+            console.log(this);
+            $.ajax({
+                url: '/admin/employee/edit',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    employeeNumber: emp.value
+                },
+                success: function (data) {
+                    var html = ''
+                    var query = data[0]
+                    html =
+                        '<input class="form-control" id="disabledTextInput" type="text"value="' +
+                        query.employeeNumber + '" />'
+                    $('#empNum').html(html)
+                    html =
+                        '<input class="form-control" type="text" value="' +
+                        query.firstName + '" />'
+                    $('#fname').html(html)
+                    html =
+                        '<input class="form-control" type="text" value="' +
+                        query.lastName + '" />'
+                    $('#lname').html(html)
+                    html =
+                        '<input class="form-control" type="email" value="' +
+                        query.email + '" />'
+                    $('#email').html(html)
+                    html =
+                        '<input class="form-control" type="text" value="' +
+                        query.officeCode + '" />'
+                    $('#officeCode').html(html)
+                    html =
+                        ' <input class="form-control" type="text" value="' +
+                        query.extension + '"/>'
+                    $('#extension').html(html)
+                    html =
+                        '<input class="form-control" type="text" value="' +
+                        query.reportsTo + '" />'
+                    $('#reportsTo').html(html)
+                }
+            })
+
+
+        })
     </script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             //document.addEventListener('DOM')
-            $('#getElement').click(function(){
+            $('#getElement').click(function () {
                 console.log(document.querySelectorAll("#edit"));
-                
+
             })
         })
     </script>
