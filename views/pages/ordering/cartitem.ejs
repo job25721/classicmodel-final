@@ -10,7 +10,7 @@
 
     <title>Order Stock</title>
 
-    <script src="jquery-3.4.1.min.js"></script>
+
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/simple-sidebar.css" rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -203,59 +203,80 @@
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">In stock product</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Product In Cart</h1>
 
                     </div>
                     <div style="font-size: 40px;" id="demo"></div>
-                    <div style="font-size: 25px;" class="txt-heading">Your Cart have <div style="display: inline ;font-size: 30px; "
-                            id="quantity-product"> </div>
-                           
-                        products  <div style="display: inline ;font-size: 30px; "id="piece-product"> </div> pieces </div>
-                        <div style="font-size: 25px;">
-                    <a id="btnCheckout" href="/admin/instock/cartitem">See Your Cart</a> <br>
-                    <a id="btnEmpty" href="emptycart">Empty Cart</a>
-                </div>
+                   
+                    <a  href="/admin/instock">Back to Stock</a><br>
+                <a id="btnEmpty" href="emptycart">Empty Cart</a>
                     <table class="table text-center table-striped" id="dataTable" width="100%" cellspacing="0"
                         style="border: black;">
                         <thead>
                             <tr>
-                                <th>ProductImage</th>
-                                <th>ProductName</th>
-                                <th>ProductScale</th>
-                                <th>ProductVendor</th>
-                                <th>QuantityInStock</th>
-                                <th>BuyPrice</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                
 
                             </tr>
-                            <% for(var i=0; i < productData.length; i++) { %>
-                                <div class="product-item">
+                            
+                                   
+                             <% for(var i=0; i < cartItem[0].length ; i++) { %>
+                                
                                     <tr>
     
+                                            
+                                        <td ><img style="display: block;" width="50px" height="50px"
+                                                src="/img/<%= cartItem[0][i].image %>" alt="NotFound"></td>
+                                        <td ><%= cartItem[0][i].name %></td>
+                                        <td ><%= cartItem[0][i].quntity %></td>
+                                        <td ><%= cartItem[0][i].price %>   </td>
+                                        <td ><%= cartItem[0][i].total %> </td>
+                                        <td ><a id="remove-<%= cartItem[0][i].code %>"  href="checkout">Remove</a></td>
     
-                                        <td class="product-img"><img style="display: block;" width="50px" height="50px"
-                                                src="/img/<%= productData[i].imgSrc %>" alt="NotFound"></td>
-                                        <td class="product-name"><%= productData[i].productName %></td>
-                                        <td class="product-scale"><%= productData[i].productScale %></td>
-                                        <td class="product-vendor"><%= productData[i].productVendor %> </td>
-                                        <td class="product-vendor"><%= productData[i].quantityInStock %> </td>
-                                        <td class="product-price"><%= productData[i].buyPrice %> </td>
-    
-                                        <td>
-                                            <form id="<%= productData[i].productCode %>" method="POST" action="instock/addItem">
-                                                <input type="text" class="product-quantity" name="quantity" value="1"
-                                                    size="2" />
-                                                <input type="hidden" name="code"
-                                                    value="<%= productData[i].productCode %>" />
-                                                <input type="submit" value="Add to Cart" class="btnAdd" /></form>
-                                        </td>
+                                        
     
                                     </tr>
-                                </div>
+                                
                                 <% } %>
 
+                               
+                            
+                        
+
                         </thead>
+                        
                         <tbody id="instockData"></tbody>
                     </table>
+                    <table>
+
+                            <table class="table text-center table-striped" id="dataTable" width="100%" cellspacing="0"
+                            style="border: black;">
+                            <thead>
+                                    <tr>
+                                            <td style="text-align: left;">Product list summary <%= cartItem[0].length %> products <%= cartItem[2] %> pieces   </td>
+                                            <td style="text-align: left;">Total Price $<%= cartItem[1]  %> </td>
+                                    </tr>
+    
+                                   
+                                
+                            
+    
+                            </thead>
+                            
+                            <tbody id="instockData"></tbody>
+                        </table>
+                        <table>
+                    
+                </table>
+                    CustomerNumber 
+                    <input type="text" name="customer-code"><br><br>
+                    DiscountCode
+                    <input type="text" name="discount-code"><br>
+                    <a id="checkout-btn" href="checkout" style="font-size: 50px;">Order</a>
 
                 </div>
             </div>
@@ -279,20 +300,10 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $.ajax({
-                url: 'instock/addItem',
-                type: 'POST',
-                dataType: 'json',
-                success: (data) => {
-                    console.log(data[0]);
-                    $('#quantity-product').html(data[0].row)
-                    $('#piece-product').html(data[1].piece)
-                }
-
-            });
+            
             
             $.ajax({
-                url: 'admin/fetchDetails',
+                url: 'fetchDetails',
                 type: 'GET',
                 dataType: 'json',
                 success: (data) => {
@@ -303,49 +314,6 @@
                 }
 
             });
-
-
-
-
-
-            /* $.post("addItem", {
-                 quantity : "10" , code : "S10_1949"
-             }, function (data) {
-                 console.log(data[0].name); 
-                 
-             }, "json");*/
-            $(".btnAdd").click(function () {
-                console.log($(this).parent().text());
-                
-                $.ajax({
-                    type: "POST",
-                    url: "instock/addItem",
-                    data: $(this).parent().serialize(),
-                    success: function (data) {
-                        
-                        $('#quantity-product').html(data[0].row)
-                        $('#piece-product').html(data[1].piece)
-                    }
-                });
-                return false; // avoid to execute the actual form submission.
-
-
-            });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         })
 
        

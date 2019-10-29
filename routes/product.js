@@ -6,7 +6,7 @@ const admin = require('../controller/admin')
 const Database = require('../config/database')
 
 //jobTitle must have sale
-router.use(function(req,res,next){    
+/*router.use(function(req,res,next){    
     let employeeNumber = 0
     if(req.session.user !== undefined) employeeNumber = parseInt(req.session.user) 
     var Permission = false
@@ -20,12 +20,13 @@ router.use(function(req,res,next){
         if(!Permission) res.render('pages/noPermission')
         else next()
     })
-})
+})*/
     
 
 router.get('/',admin.Instock)
-
+router.post('/addItem',admin.addItem)
+router.get('/cartitem',admin.cartitem)
 //fetchProduct in product admin page
-router.get('/instockFetch',admin.instockData)
+
 
 module.exports = router;
