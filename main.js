@@ -1,12 +1,13 @@
 const express = require('express')
 const app = express();
-
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
+//Local environment
 const Database = require('./config/database')
 const sequelize = require('./config/database')
+const Logger = require('./routes/logger')
 
 //connect to database
 Database.connect((err) => {
@@ -31,19 +32,16 @@ Database.connect((err) => {
         //use engine ejs to render page
         app.set("view engine", "ejs")
 
-        //serve static css bootstrap
+        //serve static img font css bootstrap
         app.use(express.static('style'))
         app.use(express.static('public'))
+        
         //routers
         app.use('/', require('./routes/index')) //indexPageRouter
-        require('./routes/logger')(app) //logger
-
+        app.use(Logger) //logger
+        
         //adminPageRouter include auth middleware inside
         app.use('/admin', require('./routes/admin'))
-
-
-
-
 
         //listen
         const port = process.env.PORT || 3000

@@ -9,10 +9,6 @@
     <meta name="author" content="">
 
     <title>Discount</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
 
@@ -28,7 +24,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-helicopter"></i>
                 </div>
@@ -40,7 +36,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/admin">
+                <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-home "></i>
                     <span>Home</span></a>
             </li>
@@ -178,10 +174,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome back </span>
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName"></span>
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empRole"></span>
-                                <img class="img-profile rounded-circle" src="/img/pm.jpg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                <img class="img-profile rounded-circle" src="/img/profile.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -216,11 +210,50 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Product in stock</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Discount</h1>
                     </div>
 
                     <!-- Content Row -->
+                    <!-- Begin Page Content -->
+                    <!-- Begin Page Content -->
+                    <div class="container">
+                        <table class="table table-border table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Code</th>
+                                    <th>Discount</th>
+                                    <th>Total Amount</th>
+                                    <th>Expire</th>
+                                    <th>Edit</th>
+                                </tr>
+                                <form action="/admin/discount/addDiscount" method="POST">
+                                    <tr>
+                                        <td>Add new</td>
+                                        <td><input type="text" name="code" id="code1" placeholder="Enter Code" size="15"
+                                                class="form-control" required></td>
+                                        <td><input type="number" name="discount" id="discount"
+                                                placeholder="Discount value" class="form-control" size="15" min="1">
+                                        </td>
+                                        <td><input type="number" name="total" id="total" placeholder="Number of times"
+                                                class="form-control" size="15" min="1"></td>
+                                        <td><input type="date" name="exp" id="exp" placeholder="yyyy/mm/dd"
+                                                class="form-control"></td>
+                                        <td>
+                                            <button id="submit" class="btn btn-success">ADD</button>
 
+                                        </td>
+                                    </tr>
+                                </form>
+                            </thead>
+                            <!-- <tbody id='adddiscount'></tbody> -->
+                            <tbody id='showdiscount'></tbody>
+                            <!-- <tbody id='deldiscount'></tbody> -->
+                        </table>
+                    </div>
+
+                    <!-- Begin Page Content -->
+                    <!-- Begin Page Content -->
                 </div>
             </div>
 
@@ -252,23 +285,41 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-
+    <!-- filter srcipt -->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(() => {
             $.ajax({
-                url: '/admin/fetchDetails',
+                url: '/admin/discount/discountShow',
                 type: 'GET',
                 dataType: 'json',
                 success: (data) => {
-                    name = data[0].firstName + " " + data[0].lastName
-                    role = data[0].jobTitle
-                    $('#empName').html(name)
-                    $('#empRole').html(role)
-                }
-
-            })
-        })
+                    var text, id;
+                    text = "";
+                    id = 1;
+                    $.each(data, function (index, obj) {
+                        text += '<tr>'
+                        text += '<td>' + id + '</td>'
+                        text += '<td>' + obj.Code + '</td>'
+                        text += '<td>' + obj.Discount + '</td>'
+                        text += '<td>' + obj.TotalAmount + '</td>'
+                        text += '<td>' + obj.Expire + '</td>'
+                        text += '<td>' + "<form action='/discountDel' method='POST'>"
+                        text += "<button name='discountID'class='btn btn-primary' Value='" +
+                            obj.discountNo + "'> Delete </button> "
+                        text += '</form>' + '</td>'
+                        text += '</tr>'
+                        id = id + 1;
+                    });
+                    $('#showdiscount').html(text);
+                },
+            });
+        });
+        //
+        $(document).ajaxError(() => {
+            $('#demo').html('Error: unknown ajaxError!');
+        });
     </script>
+    <!-- filter srcipt -->
 
 </body>
 

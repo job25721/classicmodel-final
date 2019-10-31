@@ -77,7 +77,7 @@ module.exports = {
         })
     },
     fetchCustomer(req, res) {
-        Database.query('SELECT  customerNumber,customerName , addressLine1 FROM customers , employees WHERE customers.salesRepEmployeeNumber = ' + req.session.user, function (err, data, fields) {
+        Database.query('SELECT customerNumber,customerName , addressLine1 FROM customers , employees WHERE customers.salesRepEmployeeNumber = ' + req.session.user, function (err, data, fields) {
             res.json(data);
         });
     },
@@ -100,7 +100,6 @@ module.exports = {
         })
     },
     cartitem(req, res) {
-        
         if(req.session.cart_item != undefined){
             var cartItem = req.session.cart_item;
             var tatalprice = Number.parseInt(req.session.totalPrice).toFixed(2);
@@ -108,5 +107,8 @@ module.exports = {
              res.render('pages/ordering/cartitem',{cartItem : [cartItem,tatalprice,totalpiece]})
         }   
         else{ res.render('pages/ordering/cartitem',{cartItem : ["Your Cart is Empty",0,0]})}
+    },
+    addDiscount(req,res){
+        res.send(req.body)
     }
 }
