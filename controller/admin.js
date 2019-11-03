@@ -6,48 +6,68 @@ module.exports = {
     },
     Instock(req, res) { // req : /admin/instokc
         Database.query('SELECT * FROM products join productlines using (productLine)', function (err, productData, fields) {
-            
-             res.render('pages/ordering/instock', {productData: productData});
-         })
+
+            res.render('pages/ordering/instock', {
+                productData: productData
+            });
+        })
     },
     addItem(req, res) {
-        if(req.body.quantity != undefined && req.body.quantity != undefined ){
+        if (req.body.quantity != undefined && req.body.quantity != undefined) {
             var quantity_params = parseInt(req.body.quantity)
             var code = req.body.code
-           
-            function ProductCode(pcode) { 
-               return pcode.code === code;
-             }
-            
-           
-            if( req.session.cart_item == undefined &&  req.session.total_piece == undefined ){ 
-               req.session.cart_item = []
-               req.session.total_piece = 0;
-               req.session.totalPrice =0;
 
-           }
-           req.session.total_piece+=quantity_params
-           Database.query('SELECT * FROM products join productlines using (productLine) WHERE productCode = ? ',code , (err, data) => {
-               req.session.totalPrice+=(quantity_params*data[0].buyPrice);
-               var myJSON = {name : data[0].productName ,code : data[0].productCode , quntity : quantity_params ,
-                               price : data[0].buyPrice , total : data[0].buyPrice*quantity_params , image :  data[0].imgSrc   }
-              
-               if(req.session.cart_item.find(ProductCode) != undefined){
-                  
-                   req.session.cart_item.find( ProductCode).quntity += quantity_params
-                   req.session.cart_item.find( ProductCode).total = (req.session.cart_item.find( ProductCode).quntity)*req.session.cart_item.find( ProductCode).price
-              }else{
-                   req.session.cart_item.push(myJSON)
-               
+            function ProductCode(pcode) {
+                return pcode.code === code;
+            }
 
-              }
-              res.json([{ row : req.session.cart_item.length},{piece : req.session.total_piece}] )
-           });
 
-       }else{
-           if(req.session.cart_item != undefined) res.json([{ row : req.session.cart_item.length},{piece : req.session.total_piece}]);
-           else res.json([{ row : 0},{piece : 0}]);
-       }
+            if (req.session.cart_item == undefined && req.session.total_piece == undefined) {
+                req.session.cart_item = []
+                req.session.total_piece = 0;
+                req.session.totalPrice = 0;
+
+            }
+            req.session.total_piece += quantity_params
+            Database.query('SELECT * FROM products join productlines using (productLine) WHERE productCode = ? ', code, (err, data) => {
+                req.session.totalPrice += (quantity_params * data[0].buyPrice);
+                var myJSON = {
+                    name: data[0].productName,
+                    code: data[0].productCode,
+                    quntity: quantity_params,
+                    price: data[0].buyPrice,
+                    total: data[0].buyPrice * quantity_params,
+                    image: data[0].imgSrc
+                }
+
+                if (req.session.cart_item.find(ProductCode) != undefined) {
+
+                    req.session.cart_item.find(ProductCode).quntity += quantity_params
+                    req.session.cart_item.find(ProductCode).total = (req.session.cart_item.find(ProductCode).quntity) * req.session.cart_item.find(ProductCode).price
+                } else {
+                    req.session.cart_item.push(myJSON)
+
+
+                }
+                res.json([{
+                    row: req.session.cart_item.length
+                }, {
+                    piece: req.session.total_piece
+                }])
+            });
+
+        } else {
+            if (req.session.cart_item != undefined) res.json([{
+                row: req.session.cart_item.length
+            }, {
+                piece: req.session.total_piece
+            }]);
+            else res.json([{
+                row: 0
+            }, {
+                piece: 0
+            }]);
+        }
     },
     Preorder(req, res) {
         res.render('pages/ordering/pre-order')
@@ -65,10 +85,12 @@ module.exports = {
         res.render('pages/customer')
     },
     Employee(req, res) {
-        res.render ('pages/employee')
+        res.render('pages/employee')
     },
-    e(req,res){res.render('pages/editEmployee')},
-  
+    e(req, res) {
+        res.render('pages/editEmployee')
+    },
+
     //dataFetch
     fetchDetails(req, res) {
         var empNum = parseInt(req.session.user)
@@ -81,34 +103,57 @@ module.exports = {
             res.json(data);
         });
     },
-    fetchEmployee(req,res){
+    fetchEmployee(req, res) {
         var employeeNumber
-        if(req.session.user !== undefined){
+        if (req.session.user !== undefined) {
             employeeNumber = parseInt(req.session.user)
-        }else{
+        } else {
             employeeNumber = 0
         }
-        Database.query('select * from employees where reportsTo = ' + employeeNumber ,(err,data)=>{
+        Database.query('select * from employees where reportsTo = ' + employeeNumber, (err, data) => {
             res.json(data)
         })
     },
-    editEmployee(req,res){
+    editEmployee(req, res) {
         req.session.editSESSION = parseInt(req.body.employeeNumber)
-        Database.query('select * from employees where employeeNumber = '+ req.session.editSESSION,(err,data)=>{
-            if(data.length > 0)
+        Database.query('select * from employees where employeeNumber = ' + req.session.editSESSION, (err, data) => {
+            if (data.length > 0)
                 res.json(data)
         })
     },
     cartitem(req, res) {
-        if(req.session.cart_item != undefined){
+        if (req.session.cart_item != undefined) {
             var cartItem = req.session.cart_item;
             var tatalprice = Number.parseInt(req.session.totalPrice).toFixed(2);
             var totalpiece = req.session.total_piece
-             res.render('pages/ordering/cartitem',{cartItem : [cartItem,tatalprice,totalpiece]})
-        }   
-        else{ res.render('pages/ordering/cartitem',{cartItem : ["Your Cart is Empty",0,0]})}
+            res.render('pages/ordering/cartitem', {
+                cartItem: [cartItem, tatalprice, totalpiece]
+            })
+        } else {
+            res.render('pages/ordering/cartitem', {
+                cartItem: ["Your Cart is Empty", 0, 0]
+            })
+        }
     },
-    addDiscount(req,res){
-        res.send(req.body)
-    }
+    addDiscount(req, res) {
+        code = req.body.code
+        discount = parseInt(req.body.discount)
+        total = parseInt(req.body.total)
+        expire = req.body.exp
+        Database.query("INSERT INTO discounts( Code, Discount, TotalAmount, Expire) VALUES('" + code + "'," + discount + "," + total + ",'" + expire + "')", function (err, data, fields) {
+            res.redirect('/admin/discount')
+        });
+    },
+    discountDel(req, res) {
+        discountID = parseInt(req.body.discountID)
+        Database.query("DELETE FROM discounts WHERE discountNo = " + discountID, function (err, data, fields) {
+            res.redirect('/admin/discount')
+        });
+    },
+    discountShow(req, res) {
+        Database.query('SELECT DISTINCT discountNo,Code,Discount,TotalAmount,Expire FROM discounts', function (err, data, fields) {
+            res.json(data);
+        });
+    }	    
 }
+

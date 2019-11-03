@@ -1,7 +1,8 @@
 const logger = require('../controller/logger')
+const Router = require('express').Router()
 
-module.exports = (app) => {
-    app.post('/login', logger.login)
-    app.post('/add',logger.addUser)
-    app.get('/logout', logger.logout)
-}
+Router.post('/login', logger.login)
+Router.post('/add',logger.addUser)
+Router.get('/logout', logger.logout)
+
+module.exports = Router

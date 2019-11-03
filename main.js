@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser')
 //Local environment
 const Database = require('./config/database')
 const sequelize = require('./config/database')
-const Logger = require('./routes/logger')
 
 //connect to database
 Database.connect((err) => {
@@ -36,9 +35,9 @@ Database.connect((err) => {
         app.use(express.static('style'))
         app.use(express.static('public'))
         
-        //routers
-        app.use('/', require('./routes/index')) //indexPageRouter
-        app.use(Logger) //logger
+        //routers : ExpressRouter
+        app.use(require('./routes/index')) //indexPageRouter
+        app.use(require('./routes/logger')) //logger
         
         //adminPageRouter include auth middleware inside
         app.use('/admin', require('./routes/admin'))
@@ -52,7 +51,6 @@ Database.connect((err) => {
                 console.log("Server started on http://localhost:" + port);
                 console.log("-----------------------------------------");
             }
-
         })
     }
 })
