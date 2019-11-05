@@ -431,15 +431,11 @@
     </script>
     <script>
         $(document).on('click', '#edit', function () {
-            var emp = this
-            console.log(this);
+            var employeeNumber = this.value
             $.ajax({
-                url: '/admin/employee/edit',
-                type: 'POST',
+                url: '/admin/employee/edit/'+ employeeNumber,
+                type: 'GET',
                 dataType: 'json',
-                data: {
-                    employeeNumber: emp.value
-                },
                 success: function (data) {
                     var html = ''
                     var query = data[0]

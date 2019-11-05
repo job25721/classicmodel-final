@@ -8,7 +8,7 @@ router.get('/e',admin.e)
 
 
 router.get('/fetchEmployeeData',admin.fetchEmployee)
-router.post('/edit',admin.editEmployee)
+router.get('/edit/:id',admin.editEmployee)
 
 
 module.exports = router;

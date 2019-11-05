@@ -115,7 +115,7 @@ module.exports = {
         })
     },
     editEmployee(req, res) {
-        req.session.editSESSION = parseInt(req.body.employeeNumber)
+        req.session.editSESSION = req.params.id
         Database.query('select * from employees where employeeNumber = ' + req.session.editSESSION, (err, data) => {
             if (data.length > 0)
                 res.json(data)
